@@ -1,4 +1,4 @@
-# mu-ui2
+# mu-ui
 
 ## Project setup
 ```
@@ -54,24 +54,26 @@ Vue.use(DemoUI, {
 import 'demot-ui/dist/demot-ui.css'
 ```
 
-4. 导入 font-awesome 字体图标
+
+## 字体图标
+- 导入 font-awesome 字体图标
 
 ```js
 // 全局引入字体图标
 import './assets/fonts/iconfont.css'
 ```
 
-
+- 预览图标
+  - `src\assets\fonts\demo_index.html`
+  - 查看`font-class`选项
 
 ---
-
-
 
 ## 组件
 
 ### 按钮(Button)
 
-
+#### 参数
 
 | 属性     | 值               | 描述                                                                 |
 | -------- | ---------------- | -------------------------------------------------------------------- |
@@ -83,7 +85,7 @@ import './assets/fonts/iconfont.css'
 | circle   | Boolean          | 是否为圆形按钮，默认为 false                                         |
 | icon     | Array 或 Boolean | font-awesome 字体数组，默认为 false                                  |
 
-
+#### 事件
 
 | 事件  | 值       | 描述     |
 | ----- | -------- | -------- |
@@ -93,10 +95,7 @@ import './assets/fonts/iconfont.css'
 
 ---
 
-
-
 ### 对话框(Dialog)
-
 
 
 | 属性     | 值      | 描述                               |

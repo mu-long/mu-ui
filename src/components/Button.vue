@@ -5,6 +5,7 @@
       `mu-button--${type}`,
       {
         'is-plain': plain,
+        'is-mimicry': mimicry,
         'is-round': round,
         'is-circle': circle,
         'is-disabled': disabled
@@ -41,6 +42,11 @@ export default {
     },
     // 朴素按钮
     plain: {
+      type: Boolean,
+      default: false
+    },
+    // 拟态按钮
+    mimicry: {
       type: Boolean,
       default: false
     },

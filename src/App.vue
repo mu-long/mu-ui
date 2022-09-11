@@ -42,6 +42,34 @@
       </div>
 
       <div class="row">
+        <h3>拟态按钮</h3>
+        <Mu-Button
+          mimicry
+          type='normal'
+        >normal 普通</Mu-Button>
+        <Mu-Button
+          mimicry
+          type='primary'
+        >primary 主要</Mu-Button>
+        <Mu-Button
+          mimicry
+          type='success'
+        >success 成功</Mu-Button>
+        <Mu-Button
+          mimicry
+          type='danger'
+        >danger 危险</Mu-Button>
+        <Mu-Button
+          mimicry
+          type='warning'
+        >warning 警告</Mu-Button>
+        <Mu-Button
+          mimicry
+          type='info'
+        >info 信息</Mu-Button>
+      </div>
+
+      <div class="row">
         <h3>圆角按钮 round</h3>
         <Mu-Button
           round
