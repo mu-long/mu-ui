@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Mu-ui</h1>
     <div class="button">
-      <h2>按钮</h2>
+      <h2>Button 按钮</h2>
       <div class="row">
         <h3>普通按钮</h3>
         <Mu-Button type='normal'>normal 普通</Mu-Button>
@@ -181,16 +181,61 @@
         >禁用按钮</Mu-Button>
       </div>
     </div>
+
+    <div class="dialog">
+      <h2>Dialog 对话框</h2>
+      <Mu-Button
+        type='primary'
+        @click="isShow = true"
+      >显示 Dialog 对话框</Mu-Button>
+      <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
+
+      <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
+      <!-- .sync语法糖 相当于上面的简写形式 -->
+      <Mu-Dialog
+        width='60%'
+        top='20vh'
+        :isShow.sync='isShow'
+      >
+        <template v-slot:title>
+          <!-- <h2>温馨提示：</h2> -->
+          <span>温馨提示：</span>
+        </template>
+
+        <template v-slot:body>
+          <span>这是一段信息...</span>
+        </template>
+
+        <template v-slot:footer>
+          <Mu-Button
+            type='danger'
+            @click="isShow = false"
+          >取消</Mu-Button>
+          <Mu-Button
+            type='primary'
+            @click="isShow = false"
+          >确定</Mu-Button>
+        </template>
+      </Mu-Dialog>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Mu-ui',
+  data () {
+    return {
+      isShow: false
+    }
+  },
   methods: {
     sayHello () {
       alert('hello')
     }
+    // closeDialog (val) {
+    //   this.isShow = val
+    // }
   }
 }
 </script>
