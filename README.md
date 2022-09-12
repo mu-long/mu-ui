@@ -97,48 +97,36 @@ import './assets/fonts/iconfont.css'
 
 ### 对话框(Dialog)
 
-
 | 属性     | 值      | 描述                               |
 | -------- | ------- | ---------------------------------- |
 | title    | String  | 对话框头部提示，默认为"提示"       |
-| visiable | Boolean | 对话框可见状态，默认为 false       |
-| mimicry  | Boolean | 对话框是否为拟态风格，默认为 false |
-| width    | String  | 对话框宽度，默认为 60%             |
+| hasFoolt | Boolean | 底部按钮可见状态，默认为 true       |
+| isShow   | Boolean | 对话框可见状态，默认为 false       |
+| width    | String  | 对话框宽度，默认为 50%             |
 | top      | String  | 对话框距离顶部位置，默认为 15vh    |
-
 
 
 | 插槽   | 描述                    |
 | ------ | ----------------------- |
 | title  | Dialog 标题区的内容     |
+| body  | Dialog 内容区的内容     |
 | footer | Dialog 按钮操作区的内容 |
-
-
 
 ---
 
-
-
 ### 输入框(Input)
-
-
 
 | 属性         | 值      | 描述                               |
 | ------------ | ------- | ---------------------------------- |
 | placeholder  | String  | 占位符，默认为空字符串             |
 | type         | String  | 表单类型，默认为'text'             |
-| mimicry      | Boolean | 对话框是否为拟态风格，默认为 false |
 | name         | String  | 表单命名，默认为空                 |
 | value        | String  | 表单值，默认为空字符串             |
 | disabled     | Boolean | 是否禁用，默认为 false             |
 | clearable    | Boolean | 是否可清空，默认为 false           |
 | showPassword | Boolean | 是否显示密码可见，默认为 false     |
 
-
-
 ### 切换(Switch)
-
-
 
 | 属性          | 值      | 描述                               |
 | ------------- | ------- | ---------------------------------- |

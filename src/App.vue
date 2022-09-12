@@ -183,7 +183,7 @@
     </div>
 
     <div class="dialog">
-      <h2>Dialog 对话框</h2>
+      <h2>对话框 Dialog</h2>
       <Mu-Button
         type='primary'
         @click="isShow = true"
@@ -218,6 +218,34 @@
         </template>
       </Mu-Dialog>
     </div>
+
+    <div class="input">
+      <h2>输入框 Input</h2>
+      <h3>普通输入框</h3>
+      <Mu-Input
+        name='username'
+        placeholder='请输入用户名'
+        clearable
+        v-model="username"
+      ></Mu-Input>
+      <h3>密码输入框</h3>
+      <Mu-Input
+        name='password'
+        type='password'
+        placeholder='请输入密码'
+        showPassword
+        v-model="password"
+      ></Mu-Input>
+      <h3>禁用输入框</h3>
+      <Mu-Input
+        name='createTime'
+        disabled
+        value='2022-09-11'
+      ></Mu-Input>
+      <!-- <input type="text" name="email" v-model="email"> -->
+      <!-- v-model指令是一个语法糖，等价于下面 -->
+      <!-- <input type="text" name="email" :value="email" @input="email = $event.target.value"> -->
+    </div>
   </div>
 </template>
 
@@ -226,7 +254,9 @@ export default {
   name: 'Mu-ui',
   data () {
     return {
-      isShow: false
+      isShow: false,
+      username: '',
+      password: ''
     }
   },
   methods: {
