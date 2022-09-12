@@ -261,6 +261,37 @@
         uncheckColor='#f56c6c'
       ></Mu-Switch>
     </div>
+
+    <div class="radio">
+      <h2>单选 Radio</h2>
+      性别：<Mu-Radio
+        name="man"
+        label="1"
+        color="hotpink"
+        v-model="gender"
+      >男</Mu-Radio>
+      <Mu-Radio
+        name="woman"
+        label="0"
+        color="hotpink"
+        v-model="gender"
+      >女</Mu-Radio>
+    </div>
+    <div class="radioGroup">
+      <h2>单选组 RadioGroup</h2>
+      是否追星：<Mu-RadioGroup v-model="star">
+        <Mu-Radio
+          name="star1"
+          label="1"
+          color="hotpink"
+        >是</Mu-Radio>
+        <Mu-Radio
+          name="star0"
+          label="0"
+          color="hotpink"
+        >否</Mu-Radio>
+      </Mu-RadioGroup>
+    </div>
   </div>
 </template>
 
@@ -273,16 +304,15 @@ export default {
       username: '',
       password: '',
       switchActive: false,
-      switchActive2: false
+      switchActive2: false,
+      gender: '1',
+      star: 0
     }
   },
   methods: {
     sayHello () {
       alert('hello')
     }
-    // closeDialog (val) {
-    //   this.isShow = val
-    // }
   }
 }
 </script>
