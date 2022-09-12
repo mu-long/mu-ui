@@ -246,6 +246,21 @@
       <!-- v-model指令是一个语法糖，等价于下面 -->
       <!-- <input type="text" name="email" :value="email" @input="email = $event.target.value"> -->
     </div>
+
+    <div class="switch">
+      <h2>开关 Switch</h2>
+      默认开关：<Mu-Switch
+        name="test"
+        v-model="switchActive"
+      ></Mu-Switch>
+      <br>
+      记住密码：<Mu-Switch
+        name="remember"
+        v-model="switchActive2"
+        checkedColor='#67c23a'
+        uncheckColor='#f56c6c'
+      ></Mu-Switch>
+    </div>
   </div>
 </template>
 
@@ -256,7 +271,9 @@ export default {
     return {
       isShow: false,
       username: '',
-      password: ''
+      password: '',
+      switchActive: false,
+      switchActive2: false
     }
   },
   methods: {

@@ -134,8 +134,8 @@ import './assets/fonts/iconfont.css'
 | name          | String  | 表单命名，默认为空                 |
 | value         | String  | 表单值，默认为空字符串             |
 | disabled      | Boolean | 是否禁用，默认为 false             |
-| activeColor   | String  | 激活状态颜色，默认为#dcdfe6        |
-| inactiveColor | String  | 未激化状态颜色，默认为#dcdfe6      |
+| checkedColor   | String  | 选中状态颜色，默认为 #409eff        |
+| uncheckColor | String  | 未选中状态颜色，默认为 #dcdfe6      |
 
 
 
