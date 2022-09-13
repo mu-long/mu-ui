@@ -130,10 +130,8 @@ import './assets/fonts/iconfont.css'
 
 | 属性          | 值      | 描述                               |
 | ------------- | ------- | ---------------------------------- |
-| mimicry       | Boolean | 对话框是否为拟态风格，默认为 false |
 | name          | String  | 表单命名，默认为空                 |
 | value         | String  | 表单值，默认为空字符串             |
-| disabled      | Boolean | 是否禁用，默认为 false             |
 | checkedColor   | String  | 选中状态颜色，默认为 #409eff        |
 | uncheckColor | String  | 未选中状态颜色，默认为 #dcdfe6      |
 
@@ -143,86 +141,56 @@ import './assets/fonts/iconfont.css'
 | ------ | -------- | ---------------------------------- |
 | change | Function | 状态修改触发事件，返回修改后的状态 |
 
-
-
 ---
-
-
 
 ### 单选框(Radio)
 
-
-
 | 属性    | 值                        | 描述                               |
 | ------- | ------------------------- | ---------------------------------- |
 | label   | [String, Number, Boolean] | 单选框 label 值，默认为空字符串    |
-| mimicry | Boolean                   | 对话框是否为拟态风格，默认为 false |
 | name    | String                    | 表单命名，默认为空                 |
 | value   | String                    | 表单值，默认为空字符串             |
 | color   | String                    | 单选框选择时的颜色，默认为#409eff  |
-
-
 
 ### 单选框组(RadioGroup)
 
-
-
 用于包裹 radio，通过 v-model 指定组内所有的 radio 的 v-model
 
-
-
 ---
-
-
 
 ### 复选框(Checkbox)
 
-
-
 | 属性    | 值                        | 描述                               |
 | ------- | ------------------------- | ---------------------------------- |
-| label   | [String, Number, Boolean] | 单选框 label 值，默认为空字符串    |
-| mimicry | Boolean                   | 对话框是否为拟态风格，默认为 false |
+| label   | [String, Number, Boolean] | 复选框 label 值，默认为空字符串    |
 | name    | String                    | 表单命名，默认为空                 |
-| value   | String                    | 表单值，默认为空字符串             |
-| color   | String                    | 单选框选择时的颜色，默认为#409eff  |
-
-
+| value   | Boolean                   | 表单选中状态，默认为false          |
+| color   | String                    | 复选框选择时的颜色，默认为#409eff  |
 
 ### 复选框组(CheckboxGroup)
 
-
+| 属性    | 值                        | 描述                               |
+| ------- | ------------------------- | ---------------------------------- |
+| label   | String                    | 复选框 label 值，默认为空字符串    |
+| name    | String                    | 表单命名，默认为空                 |
+| value   | Boolean                   | 表单选中状态，默认为false          |
+| color   | String                    | 复选框选择时的颜色，默认为#409eff  |
 
 用于包裹多个 checkbox，通过 v-model 指定组内所有的 checkout 的 v-model
 
-
-
 ---
 
-
-
 ### 表单项(Form-item)
-
-
 
 | 属性  | 值     | 描述                            |
 | ----- | ------ | ------------------------------- |
 | label | String | 单选框 label 值，默认为空字符串 |
 
-
-
 ### 表单(Form)
-
-
 
 | 属性        | 值     | 描述                 |
 | ----------- | ------ | -------------------- |
 | model       | Object | 表单对象，必填       |
 | label-width | String | 标签宽度，默认"80px" |
 
-
-
 ---
-
-
-

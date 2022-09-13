@@ -277,6 +277,7 @@
         v-model="gender"
       >女</Mu-Radio>
     </div>
+
     <div class="radioGroup">
       <h2>单选组 RadioGroup</h2>
       是否追星：<Mu-RadioGroup v-model="star">
@@ -292,6 +293,39 @@
         >否</Mu-Radio>
       </Mu-RadioGroup>
     </div>
+
+    <div class="checkbox">
+      <h2>复选框 Checkbox</h2>
+      记住我：<Mu-Checkbox
+        name="remember"
+        color="hotpink"
+        label="ok"
+        v-model="remember"
+      >确定</Mu-Checkbox>
+    </div>
+
+    <div class="checkboxGroup">
+      <h2>复选框组 CheckboxGroup</h2>
+      <Mu-CheckboxGroup v-model="hobby">
+        爱好：<Mu-Checkbox
+          name="movie"
+          label="看电影"
+        ></Mu-Checkbox>
+        <Mu-Checkbox
+          name="food"
+          label="美食"
+        ></Mu-Checkbox>
+        <Mu-Checkbox
+          name="game"
+          label="打游戏"
+        ></Mu-Checkbox>
+        <Mu-Checkbox
+          name="walk"
+          label="散步"
+        ></Mu-Checkbox>
+      </Mu-CheckboxGroup>
+      选中的爱好：{{ hobby }}
+    </div>
   </div>
 </template>
 
@@ -306,7 +340,9 @@ export default {
       switchActive: false,
       switchActive2: false,
       gender: '1',
-      star: 0
+      star: 0,
+      remember: false, // 记住我
+      hobby: ['美食'] // 爱好
     }
   },
   methods: {

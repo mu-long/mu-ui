@@ -53,7 +53,7 @@ export default {
     },
     color: {
       type: String,
-      default: ''
+      default: '#409eff'
     }
   },
   computed: {
