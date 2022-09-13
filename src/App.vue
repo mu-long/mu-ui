@@ -326,6 +326,82 @@
       </Mu-CheckboxGroup>
       选中的爱好：{{ hobby }}
     </div>
+
+    <div class="form">
+      <h2>From 组件</h2>
+      <Mu-From
+        :model="from"
+        labelWidth="100px"
+      >
+        <Mu-FromItem label="用户名：">
+          <Mu-Input
+            name='username'
+            placeholder='请输入用户名'
+            clearable
+            v-model="from.username"
+          ></Mu-Input>
+        </Mu-FromItem>
+
+        <Mu-FromItem label="密码：">
+          <Mu-Input
+            name='password'
+            type='password'
+            placeholder='请输入密码'
+            showPassword
+            v-model="from.password"
+          ></Mu-Input>
+        </Mu-FromItem>
+        <Mu-FromItem label="性别：">
+          <Mu-Radio
+            name="man"
+            label="1"
+            color="hotpink"
+            v-model="from.gender"
+          >男</Mu-Radio>
+          <Mu-Radio
+            name="woman"
+            label="0"
+            color="hotpink"
+            v-model="from.gender"
+          >女</Mu-Radio>
+        </Mu-FromItem>
+        <Mu-FromItem label="爱好：">
+          <Mu-CheckboxGroup v-model="from.hobby">
+            <Mu-Checkbox
+              name="movie"
+              label="看电影"
+            ></Mu-Checkbox>
+            <Mu-Checkbox
+              name="food"
+              label="美食"
+            ></Mu-Checkbox>
+            <Mu-Checkbox
+              name="game"
+              label="打游戏"
+            ></Mu-Checkbox>
+            <Mu-Checkbox
+              name="walk"
+              label="散步"
+            ></Mu-Checkbox>
+          </Mu-CheckboxGroup>
+        </Mu-FromItem>
+        <Mu-FromItem label="记住密码：">
+          <Mu-Switch
+            name="remember"
+            v-model="from.remember"
+            checkedColor='#67c23a'
+            uncheckColor='#f56c6c'
+          ></Mu-Switch>
+        </Mu-FromItem>
+        <Mu-FromItem>
+          <Mu-Button type='danger'>取消</Mu-Button>
+          <Mu-Button type='primary'>确定</Mu-Button>
+        </Mu-FromItem>
+        <!-- <Mu-FromItem></Mu-FromItem>
+        <Mu-FromItem></Mu-FromItem> -->
+
+      </Mu-From>
+    </div>
   </div>
 </template>
 
@@ -335,14 +411,21 @@ export default {
   data () {
     return {
       isShow: false,
-      username: '',
-      password: '',
+      username: '', // 用户名
+      password: '', // 密码
       switchActive: false,
       switchActive2: false,
-      gender: '1',
-      star: 0,
+      gender: '1', // 性别
+      star: 0, // 是否追星
       remember: false, // 记住我
-      hobby: ['美食'] // 爱好
+      hobby: ['美食'], // 爱好
+      from: {
+        username: '', // 用户名
+        password: '', // 密码
+        gender: '1', // 性别
+        remember: false, // 记住密码
+        hobby: [] // 爱好
+      }
     }
   },
   methods: {

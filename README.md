@@ -179,13 +179,6 @@ import './assets/fonts/iconfont.css'
 用于包裹多个 checkbox，通过 v-model 指定组内所有的 checkout 的 v-model
 
 ---
-
-### 表单项(Form-item)
-
-| 属性  | 值     | 描述                            |
-| ----- | ------ | ------------------------------- |
-| label | String | 单选框 label 值，默认为空字符串 |
-
 ### 表单(Form)
 
 | 属性        | 值     | 描述                 |
@@ -194,3 +187,10 @@ import './assets/fonts/iconfont.css'
 | label-width | String | 标签宽度，默认"80px" |
 
 ---
+
+### 表单项(Form-item)
+
+| 属性  | 值     | 描述                            |
+| ----- | ------ | ------------------------------- |
+| label | String | 单选框 label 值，默认为空字符串 |
+
