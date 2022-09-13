@@ -1,57 +1,65 @@
 # mu-ui
 
-## Project setup
-```
+## 建立项目
+```sh
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+### 编译和开发热加载
+```sh
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
+### 针对生产环境进行编译
+```sh
 npm run build
 ```
 
-### Lints and fixes files
-```
+### 检查和修复文件
+```sh
 npm run lint
+```
+
+### 打包为库
+```sh
+npm run lib
 ```
 
 ## 简介
 
-一个支持拟态风格的 Vue UI 组件
+- 基于vue2.x的 Vue UI 组件库
 
 ## 使用
 
 1. 安装
 
-```
+```sh
 npm i mu-ui
 ```
 
-2. 全局注册
+2. 导入样式
 
 ```js
-import DemoUI from 'demot-ui'
-Vue.use(DemoUI)
+import 'mu-ui/dist/mu-ui.css'
+```
+
+3. 全局注册
+
+```js
+// src/main.js
+import MuUI from '../packages/index'
+
+// 全局注册组件
+Vue.use(MuUI)
 ```
 
 3. 按需导入
 
 ```js
-import DemoUI, { Button, Form } from 'demot-ui'
-Vue.use(DemoUI, {
-  components: [Button, Form]
-})
-```
-
-3. 导入样式
-
-```js
-import 'demot-ui/dist/demot-ui.css'
+// src/main.js
+// 按需导入
+import { Button } from '../packages/index'
+Vue.component(Button.name, Button)
 ```
 
 
