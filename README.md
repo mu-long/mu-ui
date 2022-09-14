@@ -1,4 +1,4 @@
-# mu-ui
+# mu-ui-vue2
 
 ## 建立项目
 ```sh
@@ -34,20 +34,21 @@ npm run lib
 1. 安装
 
 ```sh
-npm i mu-ui
+npm i npm i mu-ui-vue2
 ```
 
 2. 导入样式
 
 ```js
-import 'mu-ui/dist/mu-ui.css'
+import 'mu-ui-vue2/dist/mu-ui-vue2.css'
 ```
 
 3. 全局注册
 
 ```js
 // src/main.js
-import MuUI from '../packages/index'
+// import MuUI from '../packages/index'
+import MuUI from 'mu-ui-vue2'
 
 // 全局注册组件
 Vue.use(MuUI)
@@ -58,7 +59,8 @@ Vue.use(MuUI)
 ```js
 // src/main.js
 // 按需导入
-import { Button } from '../packages/index'
+// import { Button } from '../packages/index'
+import { Button } from 'mu-ui-vue2'
 Vue.component(Button.name, Button)
 ```
 
