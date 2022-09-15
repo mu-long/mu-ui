@@ -12,6 +12,7 @@ import Dialog from '../src/components/Dialog.vue'
 import From from '../src/components/From.vue'
 import FromItem from '../src/components/FromItem.vue'
 import Input from '../src/components/Input.vue'
+import InputNumber from '../src/components/InputNumber.vue'
 import Radio from '../src/components/Radio.vue'
 import RadioGroup from '../src/components/RadioGroup.vue'
 import Switch from '../src/components/Switch.vue'
@@ -25,6 +26,7 @@ const components = [
   From,
   FromItem,
   Input,
+  InputNumber,
   Radio,
   RadioGroup,
   Switch
@@ -50,6 +52,7 @@ export {
   From,
   FromItem,
   Input,
+  InputNumber,
   Radio,
   RadioGroup,
   Switch

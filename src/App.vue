@@ -236,6 +236,12 @@
         showPassword
         v-model="password"
       ></Mu-Input>
+      <h3>文字居中</h3>
+      <Mu-Input
+        name='createTime'
+        center
+        value='2022-09-11'
+      ></Mu-Input>
       <h3>禁用输入框</h3>
       <Mu-Input
         name='createTime'
@@ -245,6 +251,77 @@
       <!-- <input type="text" name="email" v-model="email"> -->
       <!-- v-model指令是一个语法糖，等价于下面 -->
       <!-- <input type="text" name="email" :value="email" @input="email = $event.target.value"> -->
+
+      <h3>文本域</h3>
+      <Mu-Input
+        name='textarea'
+        type='textarea'
+        placeholder='请输入内容...'
+        v-model="textarea"
+      ></Mu-Input>
+      <h3>文本域 禁用</h3>
+      <Mu-Input
+        type='textarea'
+        disabled
+        value='用户协议...'
+      ></Mu-Input>
+
+      <h3>复合型输入框</h3>
+      <h4>前缀</h4>
+      <Mu-Input
+        type='text'
+        name='domainName'
+        placeholder='请输入域名'
+        v-model="domainName"
+      >
+        <template slot="prepend">Http://</template>
+      </Mu-Input>
+      <h4>后缀</h4>
+      <Mu-Input
+        type='text'
+        name='domainName'
+        placeholder='请输入域名'
+        v-model="domainName"
+      >
+        <template slot="append">.com</template>
+      </Mu-Input>
+      <h4>双缀</h4>
+      <Mu-Input
+        type='text'
+        name='domainName'
+        placeholder='请输入域名'
+        v-model="domainName"
+      >
+        <!-- 前缀 -->
+        <template slot="prepend">Http://</template>
+        <!-- 后缀 -->
+        <template slot="append">.com</template>
+      </Mu-Input>
+
+      <h3>计算器</h3>
+      <Mu-InputNumber
+        name='compute'
+        v-model.number="compute"
+      ></Mu-InputNumber>
+      <h3>计算器 精度</h3>
+      <Mu-InputNumber
+        name='precision2'
+        precision='2'
+        v-model="precision2"
+      ></Mu-InputNumber>
+      <h3>计算器 禁用(禁止修改数量)</h3>
+      <Mu-InputNumber
+        name='disabledNum'
+        disabled
+        v-model.number="disabledNum"
+      ></Mu-InputNumber>
+      <h3>计算器 限制数量(限制最小值0；最大值5)</h3>
+      <Mu-InputNumber
+        name='limitNum'
+        :min='0'
+        :max='5'
+        v-model.number="limitNum"
+      ></Mu-InputNumber>
     </div>
 
     <div class="switch">
@@ -413,6 +490,12 @@ export default {
       isShow: false,
       username: '', // 用户名
       password: '', // 密码
+      textarea: '', // 文本域
+      domainName: '', // 域名
+      compute: 0, // 计算
+      precision2: 1.00, // 计算精度
+      disabledNum: 99.9, // 禁止修改数量
+      limitNum: 0, // 限制数量
       switchActive: false,
       switchActive2: false,
       gender: '1', // 性别

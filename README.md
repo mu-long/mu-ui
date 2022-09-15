@@ -77,6 +77,24 @@ import './assets/fonts/iconfont.css'
   - `src\assets\fonts\demo_index.html`
   - 查看`font-class`选项
 
+### 开发者字体配置
+- 定制私有前缀
+  - 打开阿里图标
+  - 修改项目设置
+    - mu-ui-vue2：前缀m-icon-；默认字体mui-iconfont；
+  - 下载到本地，修改`src\assets\fonts\iconfont.css`
+```css
+/* .mui-iconfont 默认 */
+/* 修改为属性选择器 class类名包含 m-icon- 的就应用这个字体  */
+[class*='m-icon-'] {
+  font-family: "mui-iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+
 ---
 
 ## 组件
@@ -128,13 +146,43 @@ import './assets/fonts/iconfont.css'
 
 | 属性         | 值      | 描述                               |
 | ------------ | ------- | ---------------------------------- |
-| placeholder  | String  | 占位符，默认为空字符串             |
-| type         | String  | 表单类型，默认为'text'             |
+| type         | ['text', 'password', 'textarea']  | 表单类型，默认为'text' |
 | name         | String  | 表单命名，默认为空                 |
 | value        | String  | 表单值，默认为空字符串             |
+| width        | String  | 输入框宽度，默认为180px             |
+| rows        | Number  | 文本域高度，默认为2             |
+| placeholder  | String  | 占位符，默认为空字符串             |
 | disabled     | Boolean | 是否禁用，默认为 false             |
 | clearable    | Boolean | 是否可清空，默认为 false           |
 | showPassword | Boolean | 是否显示密码可见，默认为 false     |
+
+#### 复合型输入框
+- 通过具名插槽，可使用复合型输入框
+```vue
+<Mu-Input
+  type='text'
+  name='domainName'
+  placeholder='请输入域名'
+  v-model="domainName"
+>
+  <!-- 前缀 -->
+  <template slot="prepend">Http://</template>
+  <!-- 后缀 -->
+  <template slot="append">.com</template>
+</Mu-Input>
+```
+
+### 计算器(InputNumber)
+
+| 属性      | 值               | 描述                              |
+| --------- | ---------------- | --------------------------------- |
+| name      | String           | 表单命名，默认为空                |
+| value     | [Number, String] | 表单值，默认为空字符串            |
+| step      | Number           | 步长，每次变化数值，默认为1       |
+| min       | Number           | 最小值，默认为 -Infinity 负无穷大 |
+| max       | Number           | 最大值，默认为 +Infinity 正无穷大 |
+| precision | [Number, String] | 小数点精度，默认为0整数           |
+| disabled  | Boolean          | 是否禁用，默认为 false            |
 
 ### 切换(Switch)
 

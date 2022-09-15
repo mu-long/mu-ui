@@ -3,8 +3,44 @@
   "name": "my_collect",
   "font_family": "mui-iconfont",
   "css_prefix_text": "m-icon-",
-  "description": "",
+  "description": "默认前缀icon-；默认字体iconfont；
+mu-ui-vue2：前缀m-icon-；默认字体mui-iconfont；",
   "glyphs": [
+    {
+      "icon_id": "162780",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "162781",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "3538379",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
+      "icon_id": "10043853",
+      "name": "Decrease",
+      "font_class": "Decrease",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "10043868",
+      "name": "Increase",
+      "font_class": "Increase",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
     {
       "icon_id": "8776631",
       "name": "view",

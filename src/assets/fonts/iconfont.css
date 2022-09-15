@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mui-iconfont"; /* Project id 3611050 */
-  src: url('iconfont.woff2?t=1662801490655') format('woff2'),
-       url('iconfont.woff?t=1662801490655') format('woff'),
-       url('iconfont.ttf?t=1662801490655') format('truetype');
+  src: url('iconfont.woff2?t=1663162089693') format('woff2'),
+       url('iconfont.woff?t=1663162089693') format('woff'),
+       url('iconfont.ttf?t=1663162089693') format('truetype');
 }
 
 /* .mui-iconfont 默认 */
@@ -13,6 +13,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.m-icon-jia:before {
+  content: "\e67f";
+}
+
+.m-icon-jian:before {
+  content: "\e680";
+}
+
+.m-icon-shanchu:before {
+  content: "\e719";
+}
+
+.m-icon-Decrease:before {
+  content: "\e681";
+}
+
+.m-icon-Increase:before {
+  content: "\e682";
 }
 
 .m-icon-icon-test1:before {
