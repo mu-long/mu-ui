@@ -227,12 +227,12 @@ import './assets/fonts/iconfont.css'
 
 ### 复选框组(CheckboxGroup)
 
-| 属性    | 值                        | 描述                               |
-| ------- | ------------------------- | ---------------------------------- |
-| label   | String                    | 复选框 label 值，默认为空字符串    |
-| name    | String                    | 表单命名，默认为空                 |
-| value   | Boolean                   | 表单选中状态，默认为false          |
-| color   | String                    | 复选框选择时的颜色，默认为#409eff  |
+| 属性  | 值     | 描述                              |
+| ----- | ------ | --------------------------------- |
+| label | String | 复选框 label 值，默认为空字符串   |
+| name  | String | 表单命名，默认为空                |
+| value | Array  | 选中的复选框，默认为null          |
+| color | String | 复选框选择时的颜色，默认为#409eff |
 
 用于包裹多个 checkbox，通过 v-model 指定组内所有的 checkout 的 v-model
 

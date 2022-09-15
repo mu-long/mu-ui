@@ -14,7 +14,10 @@ export default {
     }
   },
   props: {
-    value: null
+    value: {
+      type: Array,
+      default: null
+    }
   }
 }
 </script>

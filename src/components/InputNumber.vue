@@ -119,7 +119,6 @@ export default {
         console.log('inputValue ==> ', inputValue, 'newValue ==> ', newValue, '_value ==> ', _value)
         console.log('this.precision ==> ', this.precision, '_value ==> ', _value.toFixed(this.precision))
 
-        if (!this.isNumber(_value)) return this.$emit('input', this.precision)
         // .toFixed() 取小数点指定位置
         this.$emit('input', _value.toFixed(this.precision))
       }

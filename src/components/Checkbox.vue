@@ -3,7 +3,10 @@
     class="mu-checkbox"
     :class="{'is-checked': isChecked}"
   >
-    <span class="mu-checkbox__input">
+    <span
+      class="mu-checkbox__input"
+      :class="{ 'is-indeterminate': indeterminate }"
+    >
       <span
         class="mu-checkbox__inner"
         :style="{
@@ -56,6 +59,11 @@ export default {
     color: {
       type: String,
       default: '#409eff'
+    },
+    // 表示 checkbox 的不确定状态
+    indeterminate: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -72,6 +80,8 @@ export default {
       set (value) {
         // 触发父组件input事件
         this.isGroup ? this.CheckboxGroup.$emit('input', value) : this.$emit('input', value)
+        // 触发父组件change事件
+        this.isGroup ? this.CheckboxGroup.$emit('change', value) : this.$emit('change', value)
       }
     },
     // 是否选中
@@ -117,6 +127,7 @@ export default {
       z-index: 1;
       transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
         background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+
       &:after {
         // 这里使用边框实现对勾的样式
         box-sizing: content-box;
@@ -143,6 +154,29 @@ export default {
       width: 0;
       height: 0;
       z-index: -1;
+    }
+  }
+
+  // 全选按钮样式，选择了但是没有全选中
+  .mu-checkbox__input.is-indeterminate .mu-checkbox__inner {
+    background-color: #409eff;
+    border-color: #409eff;
+
+    &:before {
+      content: "";
+      position: absolute;
+      display: block;
+      background-color: #fff;
+      height: 2px;
+      transform: scale(.5);
+      left: 0;
+      right: 0;
+      top: 5px;
+    }
+
+    &:after{
+      // 清除对勾的样式
+      content: none;
     }
   }
 

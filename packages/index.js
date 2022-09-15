@@ -7,6 +7,7 @@ import '../src/assets/fonts/iconfont.css'
 // 引入组件
 import Button from '../src/components/Button.vue'
 import Checkbox from '../src/components/Checkbox.vue'
+import CheckboxAll from '../src/components/CheckboxAll.vue'
 import CheckboxGroup from '../src/components/CheckboxGroup.vue'
 import Dialog from '../src/components/Dialog.vue'
 import From from '../src/components/From.vue'
@@ -22,6 +23,7 @@ const components = [
   Button,
   Checkbox,
   CheckboxGroup,
+  CheckboxAll,
   Dialog,
   From,
   FromItem,
@@ -48,6 +50,7 @@ export {
   Button,
   Checkbox,
   CheckboxGroup,
+  CheckboxAll,
   Dialog,
   From,
   FromItem,

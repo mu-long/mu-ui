@@ -401,7 +401,38 @@
           label="散步"
         ></Mu-Checkbox>
       </Mu-CheckboxGroup>
-      选中的爱好：{{ hobby }}
+      <p>选中的爱好：{{ hobby }}</p>
+    </div>
+
+    <div class="CheckboxAll">
+      <h2>复选框全选 CheckboxAll</h2>
+      <Mu-CheckboxAll>
+        <!-- 全选按钮 -->
+        <template v-slot:checkAll>
+          全选：<Mu-Checkbox
+            name="checkAll"
+            :indeterminate='isIndeterminate'
+            v-model="checkAll"
+            @change="handleCheckAllChange"
+          ></Mu-Checkbox>
+        </template>
+        <!-- 选项 -->
+        <template v-slot:options>
+          <Mu-CheckboxGroup
+            v-model="checkedItems"
+            @change="handleCheckedOptionsChange"
+          >
+            <template v-for="item in options">
+              <Mu-Checkbox
+                :key="item"
+                :name="item"
+                :label="item"
+              ></Mu-Checkbox>
+            </template>
+          </Mu-CheckboxGroup>
+        </template>
+      </Mu-CheckboxAll>
+      <p>选中的城市：{{ checkedItems }}</p>
     </div>
 
     <div class="form">
@@ -474,9 +505,6 @@
           <Mu-Button type='danger'>取消</Mu-Button>
           <Mu-Button type='primary'>确定</Mu-Button>
         </Mu-FromItem>
-        <!-- <Mu-FromItem></Mu-FromItem>
-        <Mu-FromItem></Mu-FromItem> -->
-
       </Mu-From>
     </div>
   </div>
@@ -502,6 +530,10 @@ export default {
       star: 0, // 是否追星
       remember: false, // 记住我
       hobby: ['美食'], // 爱好
+      checkAll: false, // 是否全选
+      options: ['上海', '北京', '广州', '深圳', '东莞'], // 全部选项
+      checkedItems: ['东莞'], // 选中的选项
+      isIndeterminate: true, // 用以表示 checkbox 的不确定状态，一般用于实现全选的效果
       from: {
         username: '', // 用户名
         password: '', // 密码
@@ -514,6 +546,24 @@ export default {
   methods: {
     sayHello () {
       alert('hello')
+    },
+    // 改变全选按钮状态
+    handleCheckAllChange (val) {
+      console.log('CheckAll val ==>', val) // Boolean
+      // 如果val存在，即全选；如果val不存在，即取消全选
+      this.checkedItems = val ? this.options : []
+      // 是否选择了，都没有全选
+      this.isIndeterminate = false
+    },
+    // 改变单个选项状态
+    handleCheckedOptionsChange (val) {
+      console.log('CheckedOptions val ==>', val)
+      // 全选的数量
+      const checkedCount = val.length
+      // 控制全选按钮是否选中
+      this.checkAll = checkedCount === this.options.length
+      // 是否选择了，都没有全选
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.options.length
     }
   }
 }
