@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+# 忽略test文件夹（不管在哪层目录）
+test/
 
 
 # local env files
