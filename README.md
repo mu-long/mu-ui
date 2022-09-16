@@ -140,13 +140,49 @@ import './assets/fonts/iconfont.css'
 | body  | Dialog 内容区的内容     |
 | footer | Dialog 按钮操作区的内容 |
 
----
+### 消息提示 Message
+
+| 属性      | 值                                    | 描述                         |
+| --------- | ------------------------------------- | ---------------------------- |
+| msg       | String                                | 提示信息，默认我是提示信息！ |
+| type      | 'info', 'success', 'error', 'warning' | 类型，默认为'info'           |
+| position  | 'center', 'leftTop', 'rightTop'       | 位置，默认为'center'         |
+| center    | Boolean                               | 文字居中，默认false          |
+| autoClose | Boolean                               | 自动关闭，默认为true         |
+| time      | Number                                | 显示时间，默认为3000         |
+
+```vue
+<template>
+  <div class="message">
+    <Mu-Button @click="showMsg">消息提示</Mu-Button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  methods: {
+    showMsg () {
+      // 调用
+      this.$message({
+        type: 'success', // 类型
+        msg: 'hello', // 提示信息
+        time: 5000, // 显示时间
+        autoClose: false, // 自动关闭
+        center: true, // 文字居中
+        position: 'leftTop' // 位置
+      })
+    },
+  }
+}
+</script>
+```
 
 ### 输入框(Input)
 
 | 属性         | 值      | 描述                               |
 | ------------ | ------- | ---------------------------------- |
-| type         | ['text', 'password', 'textarea']  | 表单类型，默认为'text' |
+| type         | 'text', 'password', 'textarea'  | 表单类型，默认为'text' |
 | name         | String  | 表单命名，默认为空                 |
 | value        | String  | 表单值，默认为空字符串             |
 | width        | String  | 输入框宽度，默认为180px             |
@@ -172,7 +208,7 @@ import './assets/fonts/iconfont.css'
 </Mu-Input>
 ```
 
-### 计算器(InputNumber)
+### 计数器(InputNumber)
 
 | 属性      | 值               | 描述                              |
 | --------- | ---------------- | --------------------------------- |
@@ -218,12 +254,13 @@ import './assets/fonts/iconfont.css'
 
 ### 复选框(Checkbox)
 
-| 属性    | 值                        | 描述                               |
-| ------- | ------------------------- | ---------------------------------- |
-| label   | [String, Number, Boolean] | 复选框 label 值，默认为空字符串    |
-| name    | String                    | 表单命名，默认为空                 |
-| value   | Boolean                   | 表单选中状态，默认为false          |
-| color   | String                    | 复选框选择时的颜色，默认为#409eff  |
+| 属性          | 值                        | 描述                                                         |
+| ------------- | ------------------------- | ------------------------------------------------------------ |
+| label         | [String, Number, Boolean] | 复选框 label 值，默认为空字符串                              |
+| name          | String                    | 表单命名，默认为空                                           |
+| value         | Boolean                   | 表单选中状态，默认为false                                    |
+| color         | String                    | 复选框选择时的颜色，默认为#409eff                            |
+| indeterminate | Boolean                   | 用以表示 checkbox 的不确定状态，一般用于实现全选的效果，默认为false |
 
 ### 复选框组(CheckboxGroup)
 
@@ -237,6 +274,83 @@ import './assets/fonts/iconfont.css'
 用于包裹多个 checkbox，通过 v-model 指定组内所有的 checkout 的 v-model
 
 ---
+
+###  复选框全选 (CheckboxAll)
+
+| 插槽   | 描述                    |
+| ------ | ----------------------- |
+| checkAll  | 全选按钮的内容     |
+| options  | 选项的内容     |
+
+```vue
+<template>
+  <div class="CheckboxAll">
+    <h2>复选框全选 CheckboxAll</h2>
+    <Mu-CheckboxAll>
+      <!-- 全选按钮 -->
+      <template v-slot:checkAll>
+        全选：<Mu-Checkbox
+          name="checkAll"
+          :indeterminate='isIndeterminate'
+          v-model="checkAll"
+          @change="handleCheckAllChange"
+        ></Mu-Checkbox>
+      </template>
+
+      <!-- 选项 -->
+      <template v-slot:options>
+        <Mu-CheckboxGroup
+          v-model="checkedItems"
+          @change="handleCheckedOptionsChange"
+        >
+          <template v-for="item in options">
+            <Mu-Checkbox
+              :key="item"
+              :name="item"
+              :label="item"
+            ></Mu-Checkbox>
+          </template>
+        </Mu-CheckboxGroup>
+      </template>
+    </Mu-CheckboxAll>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  data () {
+    return {
+      checkAll: false, // 是否全选
+      options: ['上海', '北京', '广州', '深圳', '东莞'], // 全部选项
+      checkedItems: ['东莞'], // 选中的选项
+      isIndeterminate: true, // 用以表示 checkbox 的不确定状态，一般用于实现全选的效果
+    }
+  },
+  methods: {
+    // 改变全选按钮状态
+    handleCheckAllChange (val) {
+      console.log('CheckAll val ==>', val) // Boolean
+      // 如果val存在，即全选；如果val不存在，即取消全选
+      this.checkedItems = val ? this.options : []
+      // 是否选择了，都没有全选
+      this.isIndeterminate = false
+    },
+    // 改变单个选项状态
+    handleCheckedOptionsChange (val) {
+      console.log('CheckedOptions val ==>', val)
+      // 全选的数量
+      const checkedCount = val.length
+      // 控制全选按钮是否选中
+      this.checkAll = checkedCount === this.options.length
+      // 是否选择了，都没有全选
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.options.length
+    }
+  }
+}
+</script>
+```
+
 ### 表单(Form)
 
 | 属性        | 值     | 描述                 |

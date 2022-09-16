@@ -1,7 +1,7 @@
 /**
  * 整个包的入口
  */
-
+import Vue from 'vue'
 // 全局引入字体图标
 import '../src/assets/fonts/iconfont.css'
 // 引入组件
@@ -14,6 +14,8 @@ import From from '../src/components/From.vue'
 import FromItem from '../src/components/FromItem.vue'
 import Input from '../src/components/Input.vue'
 import InputNumber from '../src/components/InputNumber.vue'
+// import Message from '../src/components/message/Message.vue'
+import Message from '../src/components/message/index'
 import Radio from '../src/components/Radio.vue'
 import RadioGroup from '../src/components/RadioGroup.vue'
 import Switch from '../src/components/Switch.vue'
@@ -33,6 +35,8 @@ const components = [
   RadioGroup,
   Switch
 ]
+
+Vue.use(Message)
 
 const install = function (Vue) {
   // 全局注册所有组件

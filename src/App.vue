@@ -507,6 +507,40 @@
         </Mu-FromItem>
       </Mu-From>
     </div>
+
+    <div class="message">
+      <h2>消息提示 Message</h2>
+      <Mu-Button @click="showMsg">消息提示</Mu-Button>
+
+      <h3>不自动关闭</h3>
+      <Mu-Button @click="showMsgN">不自动关闭</Mu-Button>
+
+      <h3>文字居中</h3>
+      <Mu-Button @click="showMsg0">文字居中</Mu-Button>
+
+      <h3>不同位置</h3>
+      <Mu-Button @click="showMsg1">center</Mu-Button>
+      <Mu-Button @click="showMsg2">leftTop</Mu-Button>
+      <Mu-Button @click="showMsg3">leftBottom</Mu-Button>
+
+      <h3>不同类型</h3>
+      <Mu-Button
+        type='primary'
+        @click="showMsgA"
+      >info</Mu-Button>
+      <Mu-Button
+        type='success'
+        @click="showMsgB"
+      >success</Mu-Button>
+      <Mu-Button
+        type='danger'
+        @click="showMsgC"
+      >error</Mu-Button>
+      <Mu-Button
+        type='warning'
+        @click="showMsgD"
+      >warning</Mu-Button>
+    </div>
   </div>
 </template>
 
@@ -564,6 +598,62 @@ export default {
       this.checkAll = checkedCount === this.options.length
       // 是否选择了，都没有全选
       this.isIndeterminate = checkedCount > 0 && checkedCount < this.options.length
+    },
+
+    showMsg () {
+      console.log('showMsg')
+      this.$message({
+        msg: 'hello', // 提示信息
+        time: 5000 // 显示时间
+      })
+    },
+    showMsgN () {
+      console.log('showMsg')
+      this.$message({
+        autoClose: false // 自动关闭
+      })
+    },
+    showMsg0 () {
+      console.log('showMsg')
+      this.$message({
+        center: true // 文字居中
+      })
+    },
+    showMsg1 () {
+      this.$message({
+        position: 'center' // 位置
+      })
+    },
+    showMsg2 () {
+      this.$message({
+        position: 'leftTop' // 位置
+      })
+    },
+    showMsg3 () {
+      this.$message({
+        position: 'rightTop' // 位置
+      })
+    },
+    showMsgA () {
+      this.$message({
+        autoClose: false,
+        type: 'info' // 类型
+      })
+    },
+    showMsgB () {
+      this.$message({
+        type: 'success' // 类型
+      })
+    },
+    showMsgC () {
+      this.$message({
+        type: 'error' // 类型
+      })
+    },
+    showMsgD () {
+      this.$message({
+        type: 'warning' // 类型
+      })
     }
   }
 }
