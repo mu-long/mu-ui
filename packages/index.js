@@ -4,6 +4,7 @@
 import Vue from 'vue'
 // 全局引入字体图标
 import '../src/assets/fonts/iconfont.css'
+import Alert from '../src/components/alert/index'
 // 引入组件
 import Button from '../src/components/Button.vue'
 import Checkbox from '../src/components/Checkbox.vue'
@@ -40,6 +41,7 @@ const components = [
 Vue
   .use(Message)
   .use(Pop)
+  .use(Alert)
 
 const install = function (Vue) {
   // 全局注册所有组件

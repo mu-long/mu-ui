@@ -548,6 +548,11 @@
       <Mu-Button @click="showPop1">气泡弹框 错误</Mu-Button>
       <Mu-Button @click="showPop2">气泡弹框 1秒</Mu-Button>
     </div>
+
+    <div class="alert">
+      <h2>弹框 Alert</h2>
+      <Mu-Button @click="showAlert">弹框</Mu-Button>
+    </div>
   </div>
 </template>
 

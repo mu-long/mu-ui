@@ -140,6 +140,58 @@ import './assets/fonts/iconfont.css'
 | body  | Dialog 内容区的内容     |
 | footer | Dialog 按钮操作区的内容 |
 
+```vue
+<template>
+  <div class="dialog">
+    <h2>对话框 Dialog</h2>
+    <Mu-Button
+      type='primary'
+      @click="isShow = true"
+    >显示 Dialog 对话框</Mu-Button>
+    <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
+
+    <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
+    <!-- .sync语法糖 相当于上面的简写形式 -->
+    <Mu-Dialog
+      width='60%'
+      top='20vh'
+      :isShow.sync='isShow'
+    >
+      <template v-slot:title>
+        <!-- <h2>温馨提示：</h2> -->
+        <span>温馨提示：</span>
+      </template>
+
+      <template v-slot:body>
+        <span>这是一段信息...</span>
+      </template>
+
+      <template v-slot:footer>
+        <Mu-Button
+          type='danger'
+          @click="isShow = false"
+        >取消</Mu-Button>
+        <Mu-Button
+          type='primary'
+          @click="isShow = false"
+        >确定</Mu-Button>
+      </template>
+    </Mu-Dialog>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  data () {
+    return {
+      isShow: false
+    }
+  }
+}
+</script>
+```
+
 ### 消息提示 Message
 
 | 属性      | 值                                    | 描述                         |
@@ -184,7 +236,6 @@ export default {
 | --------- | ------------------------------------- | ---------------------------- |
 | msg       | String                                | 提示信息，默认我是提示信息！ |
 | type      | ' ', 'shake'                          | 类型，默认为' '           |
-| top  | String                                | 距离顶部位置，默认为'15%'         |
 | time      | Number                                | 显示时间，默认为3000         |
 
 ```vue
@@ -205,7 +256,6 @@ export default {
         this.$pop({
           msg: '我是警告！',
           type: 'shake',
-          top: '20%',
           time: 1000
         })
       },

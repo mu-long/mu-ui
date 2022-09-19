@@ -1,10 +1,12 @@
 <template>
-  <div
-    class="pop"
-    :class="{'shake': type === 'shake'}"
-    :style="{'top': top}"
-    v-if="isShow"
-  >{{ msg }}</div>
+  <transition name="message-fade">
+    <div
+      class="pop"
+      :class="{'shake': type === 'shake'}"
+      :style="computedStyle"
+      v-if="isShow"
+    >{{ msg }}</div>
+  </transition>
 </template>
 
 <script>
@@ -25,29 +27,42 @@ export default {
     time: {
       type: Number,
       default: 3000
-    },
-    // 位置
-    top: {
-      type: String,
-      default: '15%'
     }
+    // // 位置
+    // top: {
+    //   type: String,
+    //   default: '15%'
+    // }
   },
   data () {
     return {
-      isShow: false // 是否显示弹框
+      isShow: false, // 是否显示弹框
+      verticalTop: 0 // 垂直方向的top距离
     }
   },
   watch: {
-    isShow (newVal, oldVal) {
-      if (newVal !== oldVal) {
-        setTimeout(() => {
+    isShow (newVal) {
+      if (!newVal) {
+        // 监听过度结束事件
+        this.$el.addEventListener('transitionend', () => {
           // 销毁实例 (触发 beforeDestroy 和 destroyed 的钩子)
           this.$destroy()
-        }, this.time)
+        })
+        // 触发close事件
+        this.$emit('close')
+      }
+    }
+  },
+  computed: {
+    computedStyle () {
+      return {
+        top: this.verticalTop + 'px'
       }
     }
   },
   mounted () {
+    // 开启定时器
+    this.startTimer()
     this.createElement()
   },
   beforeDestroy () {
@@ -55,6 +70,18 @@ export default {
     this.$el.parentNode.removeChild(this.$el)
   },
   methods: {
+    // 开启定时器
+    startTimer () {
+      let timer = setTimeout(() => {
+        this.isShow = false
+      }, this.time)
+      // 监听实例销毁
+      this.$once('hook:beforeDestroy', () => {
+        // 清除定时器
+        clearTimeout(timer)
+        timer = null
+      })
+    },
     // 创建元素
     createElement () {
       this.isShow = true
@@ -66,6 +93,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.message-fade-enter,
+.message-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.message-fade-enter-active,
+.message-fade-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
 
 // 摇摆
 @keyframes shake {
@@ -89,15 +127,17 @@ export default {
 }
 
 .shake {
+  // color: hotpink !important;
   animation: shake 0.3s linear;
 }
 
 .pop{
   z-index: 999999;
   position: fixed;
-  top: 15%;
+  // top: 16px;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  transition: top 0.5s;
   display: flex;
   justify-content: center;
   align-items: center;
