@@ -178,6 +178,44 @@ export default {
 </script>
 ```
 
+### 气泡弹框 Pop
+
+| 属性      | 值                                    | 描述                         |
+| --------- | ------------------------------------- | ---------------------------- |
+| msg       | String                                | 提示信息，默认我是提示信息！ |
+| type      | ' ', 'shake'                          | 类型，默认为' '           |
+| top  | String                                | 距离顶部位置，默认为'15%'         |
+| time      | Number                                | 显示时间，默认为3000         |
+
+```vue
+<template>
+  <div class="pop">
+    <Mu-Button @click="showPop">气泡弹框</Mu-Button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  methods: {
+    showMsg () {
+      // 调用
+      showPop1 () {
+        console.log('2')
+        this.$pop({
+          msg: '我是警告！',
+          type: 'shake',
+          top: '20%',
+          time: 1000
+        })
+      },
+    },
+  }
+}
+</script>
+```
+
+
 ### 输入框(Input)
 
 | 属性         | 值      | 描述                               |

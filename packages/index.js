@@ -16,6 +16,7 @@ import Input from '../src/components/Input.vue'
 import InputNumber from '../src/components/InputNumber.vue'
 // import Message from '../src/components/message/Message.vue'
 import Message from '../src/components/message/index'
+import Pop from '../src/components/pop/index'
 import Radio from '../src/components/Radio.vue'
 import RadioGroup from '../src/components/RadioGroup.vue'
 import Switch from '../src/components/Switch.vue'
@@ -36,7 +37,9 @@ const components = [
   Switch
 ]
 
-Vue.use(Message)
+Vue
+  .use(Message)
+  .use(Pop)
 
 const install = function (Vue) {
   // 全局注册所有组件

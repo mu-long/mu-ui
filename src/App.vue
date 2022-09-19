@@ -541,6 +541,13 @@
         @click="showMsgD"
       >warning</Mu-Button>
     </div>
+
+    <div class="pop">
+      <h2>气泡弹框 Pop</h2>
+      <Mu-Button @click="showPop">气泡弹框</Mu-Button>
+      <Mu-Button @click="showPop1">气泡弹框 错误</Mu-Button>
+      <Mu-Button @click="showPop2">气泡弹框 1秒</Mu-Button>
+    </div>
   </div>
 </template>
 
@@ -636,7 +643,6 @@ export default {
     },
     showMsgA () {
       this.$message({
-        autoClose: false,
         type: 'info' // 类型
       })
     },
@@ -653,6 +659,23 @@ export default {
     showMsgD () {
       this.$message({
         type: 'warning' // 类型
+      })
+    },
+    showPop () {
+      console.log('1')
+      this.$pop()
+    },
+    showPop1 () {
+      console.log('2')
+      this.$pop({
+        msg: '我是警告！',
+        type: 'shake'
+      })
+    },
+    showPop2 () {
+      console.log('3')
+      this.$pop({
+        time: 1000
       })
     }
   }
