@@ -123,75 +123,6 @@ import './assets/fonts/iconfont.css'
 
 ---
 
-### 对话框(Dialog)
-
-| 属性     | 值      | 描述                               |
-| -------- | ------- | ---------------------------------- |
-| title    | String  | 对话框头部提示，默认为"提示"       |
-| hasFoolt | Boolean | 底部按钮可见状态，默认为 true       |
-| isShow   | Boolean | 对话框可见状态，默认为 false       |
-| width    | String  | 对话框宽度，默认为 50%             |
-| top      | String  | 对话框距离顶部位置，默认为 15vh    |
-
-
-| 插槽   | 描述                    |
-| ------ | ----------------------- |
-| title  | Dialog 标题区的内容     |
-| body  | Dialog 内容区的内容     |
-| footer | Dialog 按钮操作区的内容 |
-
-```vue
-<template>
-  <div class="dialog">
-    <h2>对话框 Dialog</h2>
-    <Mu-Button
-      type='primary'
-      @click="isShow = true"
-    >显示 Dialog 对话框</Mu-Button>
-    <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
-
-    <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
-    <!-- .sync语法糖 相当于上面的简写形式 -->
-    <Mu-Dialog
-      width='60%'
-      top='20vh'
-      :isShow.sync='isShow'
-    >
-      <template v-slot:title>
-        <!-- <h2>温馨提示：</h2> -->
-        <span>温馨提示：</span>
-      </template>
-
-      <template v-slot:body>
-        <span>这是一段信息...</span>
-      </template>
-
-      <template v-slot:footer>
-        <Mu-Button
-          type='danger'
-          @click="isShow = false"
-        >取消</Mu-Button>
-        <Mu-Button
-          type='primary'
-          @click="isShow = false"
-        >确定</Mu-Button>
-      </template>
-    </Mu-Dialog>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'Mu-ui',
-  data () {
-    return {
-      isShow: false
-    }
-  }
-}
-</script>
-```
-
 ### 消息提示 Message
 
 | 属性      | 值                                    | 描述                         |
@@ -265,6 +196,198 @@ export default {
 </script>
 ```
 
+### 对话框(Dialog)
+
+| 属性     | 值      | 描述                               |
+| -------- | ------- | ---------------------------------- |
+| title    | String  | 对话框头部提示，默认为"提示"       |
+| width    | String  | 对话框宽度，默认为 50%             |
+| top      | String  | 对话框距离顶部位置，默认为 15vh    |
+| hasFoolt | Boolean | 底部按钮可见状态，默认为 true       |
+| isShow   | Boolean | 对话框可见状态，默认为 false       |
+| sureCallback   | Function | 确定回调，默认为 关闭对话框       |
+| cancelCallback   | Function | 取消回调，默认为 关闭对话框       |
+
+
+
+| 插槽   | 描述                    |
+| ------ | ----------------------- |
+| title  | Dialog 标题区的内容     |
+| body  | Dialog 内容区的内容     |
+| footer | Dialog 按钮操作区的内容 |
+
+#### 最简单用法
+
+```vue
+<template>
+  <div class="dialog">
+    <h2>对话框 Dialog</h2>
+    <Mu-Button
+      type='primary'
+      @click="isShow = true"
+    >显示 Dialog 对话框</Mu-Button>
+    <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
+
+    <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
+    <!-- .sync语法糖 相当于上面的简写形式 -->
+    <Mu-Dialog
+      width='60%'
+      top='20vh'
+      :isShow.sync='isShow'
+    >
+      <template v-slot:title>
+        <!-- <h2>温馨提示：</h2> -->
+        <span>温馨提示：</span>
+      </template>
+
+      <template v-slot:body>
+        <h2>这是一段信息...</h2>
+      </template>
+
+      <template v-slot:footer>
+      </template>
+    </Mu-Dialog>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  data () {
+    return {
+      isShow: false
+    }
+  }
+}
+</script>
+```
+
+#### 自定义 确认与取消 回调函数
+
+```vue
+<template>
+  <div class="dialog">
+    <h2>对话框 Dialog</h2>
+    <Mu-Button
+      type='primary'
+      @click="isShow = true"
+    >显示 Dialog 对话框</Mu-Button>
+    <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
+
+    <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
+    <!-- .sync语法糖 相当于上面的简写形式 -->
+    <Mu-Dialog
+      width='60%'
+      top='20vh'
+      :isShow.sync='isShow'
+      :sureCallback='handleSure'
+      :cancelCallback='handleCancel'
+    >
+      <template v-slot:title>
+        <!-- <h2>温馨提示：</h2> -->
+        <span>温馨提示：</span>
+      </template>
+
+      <template v-slot:body>
+        <span>这是一段信息...</span>
+      </template>
+
+      <template v-slot:footer>
+      </template>
+    </Mu-Dialog>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  data () {
+    return {
+      isShow: false
+    }
+  },
+  methods: {
+    handleSure () {
+      this.isShow = false
+      console.log('我点击了确定')
+    },
+    handleCancel () {
+      this.isShow = false
+      console.log('我点击了取消')
+    }
+  }
+}
+</script>
+```
+
+#### 自定义底部按钮
+
+- 可不传递 确认与取消 回调函数
+- 但要本地定义，并手动设置对话框的显示与隐藏
+
+```vue
+<template>
+  <div class="dialog">
+    <h2>对话框 Dialog</h2>
+    <Mu-Button
+      type='primary'
+      @click="isShow = true"
+    >显示 Dialog 对话框</Mu-Button>
+    <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
+
+    <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
+    <!-- .sync语法糖 相当于上面的简写形式 -->
+    <Mu-Dialog
+      width='60%'
+      top='20vh'
+      :isShow.sync='isShow'
+    >
+      <template v-slot:title>
+        <!-- <h2>温馨提示：</h2> -->
+        <span>温馨提示：</span>
+      </template>
+
+      <template v-slot:body>
+        <span>这是一段信息...</span>
+      </template>
+
+      <template v-slot:footer>
+        <!-- 通过具名插槽自定义底部按钮，可不传递 确认与取消 回调函数 -->
+        <Mu-Button
+          type='danger'
+          @click="handleCancel"
+        >取消</Mu-Button>
+        <Mu-Button
+          type='primary'
+          @click="handleSure"
+        >确定</Mu-Button>
+      </template>
+    </Mu-Dialog>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  data () {
+    return {
+      isShow: false
+    }
+  },
+  methods: {
+    handleSure () {
+      // 手动设置对话框的显示与隐藏
+      this.isShow = false
+      console.log('我点击了确定')
+    },
+    handleCancel () {
+      this.isShow = false
+      console.log('我点击了取消')
+    }
+  }
+}
+</script>
+```
 
 ### 输入框(Input)
 

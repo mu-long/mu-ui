@@ -4,7 +4,7 @@
     <!-- @click.self 点击自己才会触发 -->
     <div
       class="mu-dialog_wrapper"
-      v-show="isShow"
+      v-if="isShow"
       @click.self="handleCloseDialog"
     >
       <div
@@ -37,8 +37,11 @@
             name="footer"
             v-if="hasFoolt"
           >
-            <Mu-Button>取消</Mu-Button>
-            <Mu-Button type='primary'>确定</Mu-Button>
+            <Mu-Button @click="cancelCallback()">取消</Mu-Button>
+            <Mu-Button
+              type='primary'
+              @click="sureCallback()"
+            >确定</Mu-Button>
           </slot>
         </div>
       </div>
@@ -50,35 +53,103 @@
 export default {
   name: 'Mu-Dialog', // 对话框
   props: {
+    // 宽度
     width: {
       type: String,
       default: '50%'
     },
+    // 距离底部距离
     top: {
       type: String,
       default: '15vh'
     },
+    // 是否显示弹框
     isShow: {
       type: Boolean,
       default: false
     },
+    // 标题
     title: {
       type: String,
       default: '提示'
     },
+    // 是否包含底部
     hasFoolt: {
       type: Boolean,
       default: true
+    },
+    // 是否销毁实例
+    destroy: {
+      type: Boolean,
+      default: false
+    },
+    // 确定回调
+    sureCallback: {
+      type: Function,
+      default: function () { this.$emit('update:isShow', false) }
+    },
+    // 取消回调
+    cancelCallback: {
+      type: Function,
+      default: function () { this.$emit('update:isShow', false) }
+    }
+  },
+  watch: {
+    isShow (newValue) {
+      if (!newValue) {
+        // 如果允许销毁
+        if (this.destroy) {
+          // 监听过度结束事件
+          this.$el.addEventListener('transitionend', () => {
+            // 销毁实例 (触发 beforeDestroy 和 destroyed 的钩子)
+            this.$destroy()
+          })
+        }
+        // 触发父组件更新数据
+        this.$emit('update:isShow', false)
+      } else {
+        // 触发父组件更新数据
+        this.$emit('update:isShow', true)
+      }
+    }
+  },
+  mounted () {
+    this.createElement()
+  },
+  beforeDestroy () {
+    // 如果允许销毁
+    if (this.destroy) {
+      // 移除当前实例
+      this.$el.parentNode.removeChild(this.$el)
     }
   },
   methods: {
+    // 创建元素
+    createElement () {
+      // 添加实例到body
+      document.body.appendChild(this.$el)
+    },
     // 关闭对话框
     handleCloseDialog () {
       console.log('close')
+      // 取消回调
+      this.cancelCallback()
       // this.$emit('closeDialog', false)
       // 触发父组件更新数据
       this.$emit('update:isShow', false)
     }
+    // 确定事件
+    // sureEvent () {
+    //   console.log('sure...')
+    //   this.sureCallback()
+    //   this.handleCloseDialog()
+    // },
+    // // 取消事件
+    // cancelEvent () {
+    //   console.log('cancel...')
+    //   this.cancelCallback()
+    //   this.handleCloseDialog()
+    // }
   }
 }
 </script>

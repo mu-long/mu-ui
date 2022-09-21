@@ -182,43 +182,6 @@
       </div>
     </div>
 
-    <div class="dialog">
-      <h2>对话框 Dialog</h2>
-      <Mu-Button
-        type='primary'
-        @click="isShow = true"
-      >显示 Dialog 对话框</Mu-Button>
-      <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
-
-      <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
-      <!-- .sync语法糖 相当于上面的简写形式 -->
-      <Mu-Dialog
-        width='60%'
-        top='20vh'
-        :isShow.sync='isShow'
-      >
-        <template v-slot:title>
-          <!-- <h2>温馨提示：</h2> -->
-          <span>温馨提示：</span>
-        </template>
-
-        <template v-slot:body>
-          <span>这是一段信息...</span>
-        </template>
-
-        <template v-slot:footer>
-          <Mu-Button
-            type='danger'
-            @click="isShow = false"
-          >取消</Mu-Button>
-          <Mu-Button
-            type='primary'
-            @click="isShow = false"
-          >确定</Mu-Button>
-        </template>
-      </Mu-Dialog>
-    </div>
-
     <div class="input">
       <h2>输入框 Input</h2>
       <h3>普通输入框</h3>
@@ -549,9 +512,43 @@
       <Mu-Button @click="showPop2">气泡弹框 1秒</Mu-Button>
     </div>
 
-    <div class="alert">
-      <h2>弹框 Alert</h2>
-      <Mu-Button @click="showAlert">弹框</Mu-Button>
+    <div class="dialog">
+      <h2>对话框 Dialog</h2>
+      <Mu-Button
+        type='primary'
+        @click="isShow = true"
+      >显示 Dialog 对话框</Mu-Button>
+      <!-- <Mu-Dialog title="温馨提示"></Mu-Dialog> -->
+
+      <!-- <Mu-Dialog :isShow='isShow' @update:isShow='isShow = false'> -->
+      <!-- .sync语法糖 相当于上面的简写形式 -->
+      <Mu-Dialog
+        width='60%'
+        top='20vh'
+        :isShow.sync='isShow'
+        :sureCallback='handleSure'
+        :cancelCallback='handleCancel'
+      >
+        <template v-slot:title>
+          <!-- <h2>温馨提示：</h2> -->
+          <span>温馨提示：</span>
+        </template>
+
+        <template v-slot:body>
+          <h3>这是一段信息...</h3>
+        </template>
+
+        <template v-slot:footer>
+          <!-- <Mu-Button
+            type='danger'
+            @click="handleCancel"
+          >取消</Mu-Button>
+          <Mu-Button
+            type='primary'
+            @click="handleSure"
+          >确定</Mu-Button> -->
+        </template>
+      </Mu-Dialog>
     </div>
   </div>
 </template>
@@ -562,6 +559,7 @@ export default {
   data () {
     return {
       isShow: false,
+      isShowAlert: false,
       username: '', // 用户名
       password: '', // 密码
       textarea: '', // 文本域
@@ -667,21 +665,26 @@ export default {
       })
     },
     showPop () {
-      console.log('1')
       this.$pop()
     },
     showPop1 () {
-      console.log('2')
       this.$pop({
         msg: '我是警告！',
         type: 'shake'
       })
     },
     showPop2 () {
-      console.log('3')
       this.$pop({
         time: 1000
       })
+    },
+    handleSure () {
+      this.isShow = false
+      console.log('我点击了确定')
+    },
+    handleCancel () {
+      this.isShow = false
+      console.log('我点击了取消')
     }
   }
 }
