@@ -1,7 +1,7 @@
 <template>
   <transition name="message-fade">
     <div
-      class="pop"
+      class="pop modal_content"
       :class="{'shake': type === 'shake'}"
       :style="computedStyle"
       v-if="isShow"
@@ -131,12 +131,20 @@ export default {
   animation: shake 0.3s linear;
 }
 
-.pop{
+/* 模态框内容 */
+.modal_content {
   z-index: 999999;
   position: fixed;
-  // top: 16px;
+  top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  border-radius: 5px;
+}
+
+.pop{
+  top: 0;
   transition: top 0.5s;
   display: flex;
   justify-content: center;
@@ -145,7 +153,5 @@ export default {
   font-size: 16px;
   color: #fff;
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 5px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 </style>
