@@ -484,7 +484,7 @@
       <h3>不同位置</h3>
       <Mu-Button @click="showMsg1">center</Mu-Button>
       <Mu-Button @click="showMsg2">leftTop</Mu-Button>
-      <Mu-Button @click="showMsg3">leftBottom</Mu-Button>
+      <Mu-Button @click="showMsg3">rightTop</Mu-Button>
 
       <h3>不同类型</h3>
       <Mu-Button
@@ -510,6 +510,14 @@
       <Mu-Button @click="showPop">气泡弹框</Mu-Button>
       <Mu-Button @click="showPop1">气泡弹框 错误</Mu-Button>
       <Mu-Button @click="showPop2">气泡弹框 1秒</Mu-Button>
+    </div>
+
+    <div class="messageBox">
+      <h2>消息框 MessageBox</h2>
+      <h3>confirm 确认对话框</h3>
+      <Mu-Button @click="showMessageBox">confirm 确认对话框</Mu-Button>
+      <h3>alert 警示对话框</h3>
+      <Mu-Button @click="showMessageBox2">alert 警示对话框</Mu-Button>
     </div>
 
     <div class="dialog">
@@ -558,6 +566,7 @@ export default {
   name: 'Mu-ui',
   data () {
     return {
+      test: '',
       isShow: false,
       isShowAlert: false,
       username: '', // 用户名
@@ -678,13 +687,49 @@ export default {
         time: 1000
       })
     },
+    showMessageBox () {
+      // confirm 确认对话框
+      this.$confirm({
+        sureCallback: () => {
+          this.$message({
+            type: 'success',
+            msg: '已确认'
+          })
+        },
+        cancelCallback: () => {
+          this.$message({
+            type: 'info',
+            msg: '已取消'
+          })
+        }
+      })
+    },
+    showMessageBox2 () {
+      // alert 警示对话框
+      this.$alert({
+        sureCallback: () => {
+          this.$message({
+            type: 'success',
+            msg: '已确认'
+          })
+        }
+      })
+    },
     handleSure () {
       this.isShow = false
       console.log('我点击了确定')
+      this.$message({
+        type: 'success',
+        msg: '已确认'
+      })
     },
     handleCancel () {
       this.isShow = false
       console.log('我点击了取消')
+      this.$message({
+        type: 'info',
+        msg: '已取消'
+      })
     }
   }
 }

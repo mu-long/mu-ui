@@ -196,17 +196,81 @@ export default {
 </script>
 ```
 
+### 消息框(MessageBox)
+
+| 属性           | 值                 | 描述                                |
+| -------------- | ------------------ | ----------------------------------- |
+| type           | 'confirm', 'alert' | 类型，默认为 'confirm'              |
+| title          | String             | 对话框头部提示，默认为"提示"        |
+| content        | String             | 内容，默认为 ''                     |
+| width          | String             | 对话框宽度，默认为 50%              |
+| top            | String             | 对话框距离顶部位置，默认为 15vh     |
+| destroy        | Boolean            | 关闭对话框是否销毁实例，默认为 true |
+| sureCallback   | Function           | 确定回调，默认为 关闭对话框         |
+| cancelCallback | Function           | 取消回调，默认为 关闭对话框         |
+
+#### 用法
+
+```vue
+<template>
+  <div class="messageBox">
+    <h2>消息框 MessageBox</h2>
+    <h3>confirm</h3>
+    <Mu-Button @click="showMessageBox">confirm 确认对话框</Mu-Button>
+    <h3>alert</h3>
+    <Mu-Button @click="showMessageBox2">alert 警示对话框</Mu-Button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Mu-ui',
+  methods: {
+    showMessageBox () {
+      // confirm 确认对话框
+      this.$confirm({
+        sureCallback: () => {
+          this.$message({
+            type: 'success',
+            msg: '已确认'
+          })
+        },
+        cancelCallback: () => {
+          this.$message({
+            type: 'info',
+            msg: '已取消'
+          })
+        }
+      })
+    },
+    showMessageBox2 () {
+      // alert 警示对话框
+      this.$alert({
+        sureCallback: () => {
+          this.$message({
+            type: 'success',
+            msg: '已确认'
+          })
+        }
+      })
+    }
+  }
+}
+</script>
+```
+
+
 ### 对话框(Dialog)
 
-| 属性     | 值      | 描述                               |
-| -------- | ------- | ---------------------------------- |
-| title    | String  | 对话框头部提示，默认为"提示"       |
-| width    | String  | 对话框宽度，默认为 50%             |
-| top      | String  | 对话框距离顶部位置，默认为 15vh    |
-| hasFoolt | Boolean | 底部按钮可见状态，默认为 true       |
-| isShow   | Boolean | 对话框可见状态，默认为 false       |
-| sureCallback   | Function | 确定回调，默认为 关闭对话框       |
-| cancelCallback   | Function | 取消回调，默认为 关闭对话框       |
+| 属性           | 值       | 描述                                 |
+| -------------- | -------- | ------------------------------------ |
+| title          | String   | 对话框头部提示，默认为"提示"         |
+| width          | String   | 对话框宽度，默认为 50%               |
+| top            | String   | 对话框距离顶部位置，默认为 15vh      |
+| hasFoolt       | Boolean  | 底部按钮可见状态，默认为 true        |
+| isShow         | Boolean  | 对话框可见状态，默认为 false         |
+| sureCallback   | Function | 确定回调，默认为 关闭对话框          |
+| cancelCallback | Function | 取消回调，默认为 关闭对话框          |
 
 
 
@@ -310,10 +374,18 @@ export default {
     handleSure () {
       this.isShow = false
       console.log('我点击了确定')
+      this.$message({
+        type: 'success',
+        msg: '已确认'
+      })
     },
     handleCancel () {
       this.isShow = false
       console.log('我点击了取消')
+      this.$message({
+        type: 'info',
+        msg: '已取消'
+      })
     }
   }
 }
@@ -376,13 +448,20 @@ export default {
   },
   methods: {
     handleSure () {
-      // 手动设置对话框的显示与隐藏
       this.isShow = false
       console.log('我点击了确定')
+      this.$message({
+        type: 'success',
+        msg: '已确认'
+      })
     },
     handleCancel () {
       this.isShow = false
       console.log('我点击了取消')
+      this.$message({
+        type: 'info',
+        msg: '已取消'
+      })
     }
   }
 }

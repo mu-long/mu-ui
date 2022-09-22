@@ -4,7 +4,7 @@
     <!-- @click.self 点击自己才会触发 -->
     <div
       class="mu-dialog_wrapper"
-      v-if="isShow"
+      v-show="isShow"
       @click.self="handleCloseDialog"
     >
       <div
@@ -79,10 +79,10 @@ export default {
       default: true
     },
     // 是否销毁实例
-    destroy: {
-      type: Boolean,
-      default: false
-    },
+    // destroy: {
+    //   type: Boolean,
+    //   default: true
+    // },
     // 确定回调
     sureCallback: {
       type: Function,
@@ -97,16 +97,18 @@ export default {
   watch: {
     isShow (newValue) {
       if (!newValue) {
-        // 如果允许销毁
-        if (this.destroy) {
-          // 监听过度结束事件
-          this.$el.addEventListener('transitionend', () => {
-            // 销毁实例 (触发 beforeDestroy 和 destroyed 的钩子)
-            this.$destroy()
-          })
-        }
         // 触发父组件更新数据
         this.$emit('update:isShow', false)
+        // 如果允许销毁
+        // console.log('允许销毁1 ==> ', this.destroy)
+        // if (this.destroy) {
+        //   // 监听动画结束事件
+        //   this.$el.addEventListener('animationend', () => {
+        //     console.log('允许销毁2 ==> ', this.destroy)
+        //     // 销毁实例 (触发 beforeDestroy 和 destroyed 的钩子)
+        //     this.$destroy()
+        //   })
+        // }
       } else {
         // 触发父组件更新数据
         this.$emit('update:isShow', true)
@@ -118,10 +120,11 @@ export default {
   },
   beforeDestroy () {
     // 如果允许销毁
-    if (this.destroy) {
-      // 移除当前实例
-      this.$el.parentNode.removeChild(this.$el)
-    }
+    // console.log('允许销毁3 ==> ', this.destroy)
+    // if (this.destroy && this.isShow === false) {
+    //   // 移除当前实例
+    //   this.$el.parentNode.removeChild(this.$el)
+    // }
   },
   methods: {
     // 创建元素

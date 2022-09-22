@@ -17,6 +17,7 @@ import Input from '../src/components/Input.vue'
 import InputNumber from '../src/components/InputNumber.vue'
 // import Message from '../src/components/message/Message.vue'
 import Message from '../src/components/message/index'
+import messageBox from '../src/components/messageBox/index'
 import Pop from '../src/components/pop/index'
 import Radio from '../src/components/Radio.vue'
 import RadioGroup from '../src/components/RadioGroup.vue'
@@ -40,6 +41,7 @@ const components = [
 
 Vue
   .use(Message)
+  .use(messageBox)
   .use(Pop)
 
 const install = function (Vue) {
