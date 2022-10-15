@@ -8,17 +8,21 @@
         'is-mimicry': mimicry,
         'is-round': round,
         'is-circle': circle,
-        'is-disabled': disabled
+        'is-disabled': disabled,
+        'is-rotateIcon': isRotateIcon
       }
     ]"
     :disabled='disabled'
+    :isRotateIcon='isRotateIcon'
     @click="handleClick"
   >
     <!-- <i class="mui-iconfont m-icon-guanbi1"></i> -->
-    <i
-      :class="icon"
-      v-if="icon"
-    ></i>
+    <span v-show="isShowIcon">
+      <i
+        :class="icon"
+        v-if="icon"
+      ></i>
+    </span>
     <!-- 根据是否传入内容进行span渲染 -->
     <span v-if="$slots.default">
       <slot></slot>
@@ -69,6 +73,16 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+    // 字体图标是否显示
+    isShowIcon: {
+      type: Boolean,
+      default: true
+    },
+    // 字体图标是否旋转
+    isRotateIcon: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -295,26 +309,51 @@ $danger-active-color: #f78989;
 }
 
 // 禁用
-.mu-button.mu-button.is-disabled .mask {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(148, 146, 146, 0.39);
-  left: 0;
-  top: 0;
-  box-shadow: 2px 2px 3px rgba(216, 213, 213, 0.3);
-  border-radius: 4px;
-  z-index: 100;
-}
-.mu-button.is-round .mask {
-  border-radius: 20px;
-}
-
-.mu-button.is-circle .mask {
-  border-radius: 50%;
-}
 .mu-button.is-disabled {
   cursor: no-drop;
   opacity: 0.5;
 }
+
+// 字体图标是否旋转
+.mu-button.is-rotateIcon{
+  i {
+    display: inline-block;
+    animation: rotating 2s linear infinite;
+  }
+}
+
+@keyframes rotating {
+
+  /* 顺时针旋转 */
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+// .mu-button.mu-button.is-disabled .mask {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(148, 146, 146, 0.39);
+//   left: 0;
+//   top: 0;
+//   box-shadow: 2px 2px 3px rgba(216, 213, 213, 0.3);
+//   border-radius: 4px;
+//   z-index: 100;
+// }
+// .mu-button.is-round .mask {
+//   border-radius: 20px;
+// }
+
+// .mu-button.is-circle .mask {
+//   border-radius: 50%;
+// }
 </style>
