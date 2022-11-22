@@ -1,0 +1,132 @@
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+    Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  color: #333;
+  background-color: #fff;
+  /* min-width: 1226px; */
+  font-size: 14px;
+}
+
+/* color: var(--themeColor); */
+:root {
+  --themeColor: #5fb878; /* 主题颜色 */
+  /* --themeColor: #1e90ff; */
+  --minorColor: #e3e3e3; /* 次要颜色 */
+  --bgColor: #393d49;
+  --textColor-light: #e7e9ec; /* 高亮颜色 */
+  --textColor-dark: #494949; /* 黑暗颜色 */
+  --textColor-darker: #2e2e2e; /* 更暗的 */
+  --textcolor-gray: #8b8b8b; /* 灰色的 */
+  --textcolor-dark-gray: #727272; /* 深灰 */
+  --textcolor-light-gray: #c6c6c6; /* 浅灰 */
+  --maskColor: rgba(0, 0, 0, 0.6); /* 遮罩层 */
+  --success: #5fb878; /* 成功 */
+  --danger: #ff5722; /* 失败 危险 */
+  --warning: #ffb800; /* 警告 */
+  --info: #31bdec; /* 引导 */
+  --boxShadow: 0 15px 30px rgb(0 0 0 / 20%); /* 盒子阴影 */
+  --minHeight: 600px; /* 最小高度 */
+}
+
+/* 鼠标禁用 */
+.not_allowed {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* .container {
+  width: 1226px;
+  margin: 0 auto;
+} */
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+} */
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  margin: 0;
+  outline: none;
+  border: none;
+}
+
+input {
+  padding-left: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* img,
+video {
+  height: auto;
+  max-width: 100%;
+} */
+
+img {
+  display: block;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}

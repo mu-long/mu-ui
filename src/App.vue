@@ -165,6 +165,91 @@
       </div>
 
       <div class="row">
+        <h3>不同尺寸 size</h3>
+        <div class="row">
+          <Mu-Button size=''>普通按钮</Mu-Button>
+          <Mu-Button size='medium'>中等按钮</Mu-Button>
+          <Mu-Button size='small'>小型按钮</Mu-Button>
+          <Mu-Button size='mini'>迷你按钮</Mu-Button>
+        </div>
+        <div class="row">
+          <Mu-Button
+            round
+            size=''
+          >普通按钮</Mu-Button>
+          <Mu-Button
+            round
+            size='medium'
+          >中等按钮</Mu-Button>
+          <Mu-Button
+            round
+            size='small'
+          >小型按钮</Mu-Button>
+          <Mu-Button
+            round
+            size='mini'
+          >迷你按钮</Mu-Button>
+        </div>
+        <div class="row">
+          <Mu-Button
+            circle
+            size=''
+          >普</Mu-Button>
+          <Mu-Button
+            circle
+            size='medium'
+          >中</Mu-Button>
+          <Mu-Button
+            circle
+            size='small'
+          >小</Mu-Button>
+          <Mu-Button
+            circle
+            size='mini'
+          >迷</Mu-Button>
+        </div>
+        <div class="row">
+          <Mu-Button
+            circle
+            size=''
+            icon='m-icon-icon-test7'
+          ></Mu-Button>
+          <Mu-Button
+            circle
+            size='medium'
+            icon='m-icon-icon-test7'
+          ></Mu-Button>
+          <Mu-Button
+            circle
+            size='small'
+            icon='m-icon-icon-test7'
+          ></Mu-Button>
+          <Mu-Button
+            circle
+            size='mini'
+            icon='m-icon-icon-test7'
+          ></Mu-Button>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>自定义按钮与字体颜色 bgColor&fontColor</h3>
+        <Mu-Button
+          bgColor='hotpink'
+          fontColor='#fff'
+        >自定义按钮与字体颜色</Mu-Button>
+      </div>
+
+      <div class="row">
+        <h3>字体图标是否旋转 isRotateIcon</h3>
+        <Mu-Button
+          type='success'
+          icon='m-icon-loading'
+          isRotateIcon
+        >上传到服务器</Mu-Button>
+      </div>
+
+      <div class="row">
         <h3>点击事件 click</h3>
         <Mu-Button
           type='primary'
@@ -558,6 +643,41 @@
         </template>
       </Mu-Dialog>
     </div>
+
+    <div class="uploadfile">
+      <h2>文件上传 UploadFile</h2>
+      <h3>多文件上传 [聚合类型 - 功能齐全]</h3>
+      <Mu-UploadFile
+        uploadAddress='http://127.0.0.1:3000'
+        fieldName='filename'
+        drag
+        :disabled='false'
+        multiple
+        accept='.png,.jpg,.jpeg,.mp4'
+        :limit='5'
+        :videoMaxSize='1 * 1024 * 1024 * 1024'
+        :imgMaxSize='2 * 1024 * 1024'
+        :sliceUploadMinFileSize='5 * 1024 * 1024'
+        @successListInfo='lookSuccessListInfo'
+      >
+        <!-- 提示信息 -->
+        <template v-slot:tipInfo>
+          <span>只能上传 .mp4 格式的视频文件，大小不能超过2GB！</span>
+          <span>或 .png /.jpg /.jpeg 格式的图片文件，大小不能超过2MB！</span>
+          <p>禁止上传：名称不同但内容相同的文件</p>
+        </template>
+      </Mu-UploadFile>
+    </div>
+
+    <div class="previewImage">
+      <h2>预览图片 PreviewImage</h2>
+      <Mu-Button @click="previewImage">预览图片</Mu-Button>
+    </div>
+
+    <div class="clipImage">
+      <h2>裁切图片 ClipImage</h2>
+      <Mu-ClipImage @saveImage="saveImage"></Mu-ClipImage>
+    </div>
   </div>
 </template>
 
@@ -593,7 +713,8 @@ export default {
         gender: '1', // 性别
         remember: false, // 记住密码
         hobby: [] // 爱好
-      }
+      },
+      clipImgInfo: '' // 裁切图片信息
     }
   },
   methods: {
@@ -730,9 +851,34 @@ export default {
         type: 'info',
         msg: '已取消'
       })
+    },
+    // 查看上传成功列表信息
+    lookSuccessListInfo (successList) {
+      console.log('上传成功列表 ==> ', successList)
+    },
+    // 保存裁切图片信息
+    saveImage (payload) {
+      this.clipImgInfo = payload
+    },
+    previewImage () {
+      console.log('预览图片')
+      this.$previewImage({
+        urlList: [
+          'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
+          'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+          'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg'
+        ]
+      })
     }
   }
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#app {
+  padding: 10px;
+}
+.row {
+  padding: 10px;
+}
+</style>

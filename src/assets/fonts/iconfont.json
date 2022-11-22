@@ -7,6 +7,160 @@
 mu-ui-vue2：前缀m-icon-；默认字体mui-iconfont；",
   "glyphs": [
     {
+      "icon_id": "807275",
+      "name": "全屏",
+      "font_class": "quanping1",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "8094811",
+      "name": "rotate-left",
+      "font_class": "rotate-left",
+      "unicode": "e901",
+      "unicode_decimal": 59649
+    },
+    {
+      "icon_id": "8094812",
+      "name": "rotate-right",
+      "font_class": "rotate-right",
+      "unicode": "e902",
+      "unicode_decimal": 59650
+    },
+    {
+      "icon_id": "23420598",
+      "name": "旋转-2",
+      "font_class": "xuanzhuan-2",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "23420599",
+      "name": "旋转-1",
+      "font_class": "xuanzhuan-1",
+      "unicode": "e69b",
+      "unicode_decimal": 59035
+    },
+    {
+      "icon_id": "26923142",
+      "name": "全屏-01",
+      "font_class": "quanping-01",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "26923143",
+      "name": "退出全屏-01",
+      "font_class": "tuichuquanping-01",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "240311",
+      "name": "cut",
+      "font_class": "cut",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
+      "icon_id": "659634",
+      "name": "cut",
+      "font_class": "cut1",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "2256769",
+      "name": "预览",
+      "font_class": "yulan1",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "2471396",
+      "name": "图片预览",
+      "font_class": "tupianyulan",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "4686546",
+      "name": "保存",
+      "font_class": "baocun",
+      "unicode": "ec09",
+      "unicode_decimal": 60425
+    },
+    {
+      "icon_id": "4777227",
+      "name": "缩小",
+      "font_class": "suoxiao1",
+      "unicode": "ec13",
+      "unicode_decimal": 60435
+    },
+    {
+      "icon_id": "5732758",
+      "name": "搜索放大",
+      "font_class": "sousuofangda",
+      "unicode": "ec32",
+      "unicode_decimal": 60466
+    },
+    {
+      "icon_id": "5831330",
+      "name": "预览",
+      "font_class": "yulan2",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "15824161",
+      "name": "【视图】保存视点",
+      "font_class": "shitubaocunshidian",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "15838457",
+      "name": "cut",
+      "font_class": "cut2",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "22385086",
+      "name": "全屏预览",
+      "font_class": "quanpingyulan",
+      "unicode": "ee13",
+      "unicode_decimal": 60947
+    },
+    {
+      "icon_id": "29839001",
+      "name": "添加文件",
+      "font_class": "tianjiawenjian",
+      "unicode": "e7d7",
+      "unicode_decimal": 59351
+    },
+    {
+      "icon_id": "4766901",
+      "name": "cloud-upload",
+      "font_class": "cloud-upload",
+      "unicode": "e7d9",
+      "unicode_decimal": 59353
+    },
+    {
+      "icon_id": "4766903",
+      "name": "cloud-download",
+      "font_class": "cloud-download",
+      "unicode": "e7da",
+      "unicode_decimal": 59354
+    },
+    {
+      "icon_id": "4766904",
+      "name": "cloud-sync",
+      "font_class": "cloud-sync",
+      "unicode": "e7db",
+      "unicode_decimal": 59355
+    },
+    {
       "icon_id": "162780",
       "name": "加",
       "font_class": "jia",

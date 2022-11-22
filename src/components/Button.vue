@@ -3,22 +3,29 @@
     class="mu-button"
     :class="[
       `mu-button--${type}`,
+      `mu-button--${size}`,
       {
         'is-plain': plain,
         'is-mimicry': mimicry,
         'is-round': round,
         'is-circle': circle,
         'is-disabled': disabled,
-        'is-rotateIcon': isRotateIcon
+        'is-rotateIcon': isRotateIcon,
+        customStyle: bgColor || fontColor
       }
     ]"
+    :style="{
+      'background-color': bgColor,
+      color: fontColor
+    }"
     :disabled='disabled'
     :isRotateIcon='isRotateIcon'
     @click="handleClick"
   >
     <!-- <i class="mui-iconfont m-icon-guanbi1"></i> -->
-    <span v-show="isShowIcon">
+    <span v-if="isShowIcon && icon !==''">
       <i
+        class="iconfont"
         :class="icon"
         v-if="icon"
       ></i>
@@ -43,6 +50,26 @@ export default {
         // normal 普通; primary 主要; success 成功; danger 危险; warning 警告; info 信息
         return ['normal', 'primary', 'success', 'danger', 'warning', 'info'].includes(value)
       }
+    },
+    // 类型
+    size: {
+      type: String,
+      default: '',
+      // 数据效验
+      validator: value => {
+        // '' 默认; medium 中等; small 小型; mini 迷你;
+        return ['', 'medium', 'small', 'mini'].includes(value)
+      }
+    },
+    // 背景颜色
+    bgColor: {
+      type: String,
+      default: ''
+    },
+    // 字体颜色
+    fontColor: {
+      type: String,
+      default: ''
     },
     // 朴素按钮
     plain: {
@@ -93,7 +120,7 @@ export default {
 
   methods: {
     handleClick (e) {
-      // if (this.disabled) return
+      if (this.disabled) return
       this.$emit('click', e)
     }
   }
@@ -126,7 +153,7 @@ $danger-active-color: #f78989;
   border-radius: 4px;
   white-space: nowrap;
   outline: none;
-  font-family: 'PingFang SC', 'Microsoft Yahei', sans-serif;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
   line-height: 1;
   font-size: 14px;
   color: #606266;
@@ -141,6 +168,42 @@ $danger-active-color: #f78989;
     color: $normal-active-color;
     border-color: #c6e2ff;
     background-color: #ecf5ff;
+  }
+  .iconfont {
+    font-size: 16px;
+  }
+}
+
+.customStyle {
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.mu-button--medium {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  .iconfont {
+    font-size: 14px;
+  }
+}
+
+.mu-button--small {
+  padding: 9px 15px;
+  font-size: 12px;
+  border-radius: 3px;
+  .iconfont {
+    font-size: 12px;
+  }
+}
+
+.mu-button--mini {
+  padding: 7px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  .iconfont {
+    font-size: 12px;
   }
 }
 
@@ -297,14 +360,38 @@ $danger-active-color: #f78989;
   padding: 12px 23px;
 }
 
+.mu-button--medium.is-round {
+  padding: 10px 20px;
+}
+
+.mu-button--small.is-round {
+  padding: 9px 15px;
+}
+
+.mu-button--mini.is-round {
+  padding: 7px 10px;
+}
+
 // 圆形按钮
 .mu-button.is-circle {
   border-radius: 50%;
   padding: 12px;
 }
 
+.mu-button--medium.is-circle {
+  padding: 10px;
+}
+
+.mu-button--small.is-circle {
+  padding: 8px;
+}
+
+.mu-button--mini.is-circle {
+  padding: 6px;
+}
+
 // 让图标和文字之间空开
-.mu-button [class*='m-icon-'] + span {
+.mu-button [class*="m-icon-"] + span {
   margin-left: 5px;
 }
 
@@ -315,7 +402,7 @@ $danger-active-color: #f78989;
 }
 
 // 字体图标是否旋转
-.mu-button.is-rotateIcon{
+.mu-button.is-rotateIcon {
   i {
     display: inline-block;
     animation: rotating 2s linear infinite;
@@ -323,7 +410,6 @@ $danger-active-color: #f78989;
 }
 
 @keyframes rotating {
-
   /* 顺时针旋转 */
   0% {
     -webkit-transform: rotate(0deg);

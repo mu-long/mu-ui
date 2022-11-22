@@ -9,7 +9,8 @@
     >
       <div
         class="mu-dialog"
-        :style="{width, top}"
+        v-drag
+        :style="{width, top, 'margin-bottom': '20vh'}"
       >
         <!-- 标题 -->
         <div class="mu-dialog_header">
@@ -25,11 +26,13 @@
             <i class="m-icon-icon-test28"></i>
           </div>
         </div>
+
         <!-- 内容 -->
         <div class="mu-dialog_body">
           <!-- 插槽 -->
           <slot name="body"></slot>
         </div>
+
         <!-- 底部 -->
         <div class="mu-dialog_footer">
           <!-- 插槽 -->
@@ -78,11 +81,6 @@ export default {
       type: Boolean,
       default: true
     },
-    // 是否销毁实例
-    // destroy: {
-    //   type: Boolean,
-    //   default: true
-    // },
     // 确定回调
     sureCallback: {
       type: Function,
@@ -99,16 +97,6 @@ export default {
       if (!newValue) {
         // 触发父组件更新数据
         this.$emit('update:isShow', false)
-        // 如果允许销毁
-        // console.log('允许销毁1 ==> ', this.destroy)
-        // if (this.destroy) {
-        //   // 监听动画结束事件
-        //   this.$el.addEventListener('animationend', () => {
-        //     console.log('允许销毁2 ==> ', this.destroy)
-        //     // 销毁实例 (触发 beforeDestroy 和 destroyed 的钩子)
-        //     this.$destroy()
-        //   })
-        // }
       } else {
         // 触发父组件更新数据
         this.$emit('update:isShow', true)
@@ -117,14 +105,6 @@ export default {
   },
   mounted () {
     this.createElement()
-  },
-  beforeDestroy () {
-    // 如果允许销毁
-    // console.log('允许销毁3 ==> ', this.destroy)
-    // if (this.destroy && this.isShow === false) {
-    //   // 移除当前实例
-    //   this.$el.parentNode.removeChild(this.$el)
-    // }
   },
   methods: {
     // 创建元素
@@ -174,8 +154,8 @@ export default {
     position: relative;
     width: 50%;
     top: 15vh;
-    margin: auto;
-    // margin: 15vh auto 50px;
+    left: 50%;
+    transform: translateX(-50%);
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -192,23 +172,23 @@ export default {
         color: #303133;
       }
 
-      .closeBtn{
+      .closeBtn {
         width: 16px;
         height: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        & > i:hover{
+        & > i:hover {
           font-size: 18px;
           color: #409eff;
-          transition: all .3s;
+          transition: all 0.3s;
         }
       }
     }
 
     &_body {
-      padding: 30px 20px;
+      padding: 10px;
       color: #606266;
       font-size: 14px;
       // CSS 属性 word-break 指定了怎样在单词内断行

@@ -1,11 +1,10 @@
 @font-face {
   font-family: "mui-iconfont"; /* Project id 3611050 */
-  src: url('iconfont.woff2?t=1663162089693') format('woff2'),
-       url('iconfont.woff?t=1663162089693') format('woff'),
-       url('iconfont.ttf?t=1663162089693') format('truetype');
+  src: url('iconfont.woff2?t=1668848266588') format('woff2'),
+       url('iconfont.woff?t=1668848266588') format('woff'),
+       url('iconfont.ttf?t=1668848266588') format('truetype');
 }
 
-/* .mui-iconfont 默认 */
 /* 修改为属性选择器 class类名包含 m-icon- 的就应用这个字体  */
 [class*='m-icon-'] {
   font-family: "mui-iconfont" !important;
@@ -13,6 +12,94 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.m-icon-quanping1:before {
+  content: "\e68b";
+}
+
+.m-icon-rotate-left:before {
+  content: "\e901";
+}
+
+.m-icon-rotate-right:before {
+  content: "\e902";
+}
+
+.m-icon-xuanzhuan-2:before {
+  content: "\e69a";
+}
+
+.m-icon-xuanzhuan-1:before {
+  content: "\e69b";
+}
+
+.m-icon-quanping-01:before {
+  content: "\e68c";
+}
+
+.m-icon-tuichuquanping-01:before {
+  content: "\e68d";
+}
+
+.m-icon-cut:before {
+  content: "\e6f8";
+}
+
+.m-icon-cut1:before {
+  content: "\e6b7";
+}
+
+.m-icon-yulan1:before {
+  content: "\e684";
+}
+
+.m-icon-tupianyulan:before {
+  content: "\e685";
+}
+
+.m-icon-baocun:before {
+  content: "\ec09";
+}
+
+.m-icon-suoxiao1:before {
+  content: "\ec13";
+}
+
+.m-icon-sousuofangda:before {
+  content: "\ec32";
+}
+
+.m-icon-yulan2:before {
+  content: "\e687";
+}
+
+.m-icon-shitubaocunshidian:before {
+  content: "\e689";
+}
+
+.m-icon-cut2:before {
+  content: "\e68a";
+}
+
+.m-icon-quanpingyulan:before {
+  content: "\ee13";
+}
+
+.m-icon-tianjiawenjian:before {
+  content: "\e7d7";
+}
+
+.m-icon-cloud-upload:before {
+  content: "\e7d9";
+}
+
+.m-icon-cloud-download:before {
+  content: "\e7da";
+}
+
+.m-icon-cloud-sync:before {
+  content: "\e7db";
 }
 
 .m-icon-jia:before {

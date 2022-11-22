@@ -103,15 +103,20 @@ import './assets/fonts/iconfont.css'
 
 #### 参数
 
-| 属性     | 值               | 描述                                                                 |
-| -------- | ---------------- | -------------------------------------------------------------------- |
-| type     | String           | 按钮类型：primary,info,success,warning,danger                        |
-| plain    | Boolean          | 是否为朴素按钮，默认为 false                                         |
-| mimicry  | Boolean          | 是否为拟态按钮，和 plain 不能同时设置，会被 plain 覆盖。默认为 false |
-| disabled | Boolean          | 是否禁用按钮，默认为 false                                           |
-| round    | Boolean          | 是否为圆角按钮，默认为 false                                         |
-| circle   | Boolean          | 是否为圆形按钮，默认为 false                                         |
-| icon     | Array 或 Boolean | font-awesome 字体数组，默认为 false                                  |
+| 属性         | 值      | 描述                                                         |
+| ------------ | ------- | ------------------------------------------------------------ |
+| type         | String  | 按钮类型：normal 普通; primary 主要; success 成功; danger 危险; warning 警告; info 信息 |
+| size         | String  | 按钮尺寸：'' 默认; medium 中等; small 小型; mini 迷你;       |
+| plain        | Boolean | 是否为朴素按钮，默认为 false                                 |
+| mimicry      | Boolean | 是否为拟态按钮 (不能和 plain同时设置，会被 plain 覆盖)，默认为 false |
+| disabled     | Boolean | 是否禁用按钮，默认为 false                                   |
+| round        | Boolean | 是否为圆角按钮，默认为 false                                 |
+| circle       | Boolean | 是否为圆形按钮，默认为 false                                 |
+| icon         | String  | 字体图标，默认为 ’‘                                          |
+| isShowIcon   | Boolean | 字体图标是否显示，默认为 true                                |
+| isRotateIcon | Boolean | 字体图标是否旋转，默认为 false                               |
+| bgColor      | String  | 自定义按钮背景颜色 (不能和 type同时设置)，默认为 ''          |
+| fontColor    | String  | 自定义按钮字体颜色 (不能和 plain同时设置)，默认为 ''         |
 
 #### 事件
 
@@ -656,3 +661,132 @@ export default {
 | ----- | ------ | ------------------------------- |
 | label | String | 单选框 label 值，默认为空字符串 |
 
+### 文件上传 (UploadFile)
+- 聚合类型 - 功能齐全
+  - 支持多文件上传 
+  - 支持拖拽上传
+  - 支持缩略图
+  - 支持文件预览与下载
+  - 支持显示上传进度
+  - 支持限制文件类型与大小
+  - 支持大文件切片上传，断点续传
+
+| 参数                   | 说明                 | 类型    | 可选值 | 默认值                 |
+| ---------------------- | -------------------- | ------- | ------ | ---------------------- |
+| uploadAddress          | 必选参数，上传的地址 | string  | —      | ''                     |
+| accept                 | 接受上传的文件类型 (注意字符串格式) | string  | —      | '.png,.jpg,.jpeg,.mp4' |
+| multiple               | 是否支持多选文件     | boolean | —      | false                  |
+| limit                  | 最大允许上传个数     | number  | —      | 1                      |
+| drag                   | 是否启用拖拽上传     | boolean | —      | false                  |
+| fieldName              | 上传的文件字段名     | string  | —      | filename               |
+| disabled               | 是否禁用             | boolean | —      | false                  |
+| videoMaxSize           | 限制视频文件大小 (默认最大 1GB)     | Number  | —      | 1 * 1024 * 1024 * 1024 |
+| imgMaxSize             | 限制图片文件大小 (默认最大 2MB)     | Number  | —      | 2 * 1024 * 1024        |
+| sliceUploadMinFileSize | 启用切片上传的最小文件大小 (默认>= 100MB) | Number  | —      | 100 * 1024 * 1024        |
+
+| 事件            | 值       | 描述                                       |
+| --------------- | -------- | ------------------------------------------ |
+| successListInfo | Function | 列表上传结束触发事件，返回上传成功列表信息 |
+
+```vue
+<Mu-UploadFile
+  uploadAddress='http://127.0.0.1:3000'
+  fieldName='filename'
+  drag
+  :disabled='false'
+  multiple
+  accept='.png,.jpg,.jpeg,.mp4'
+  :limit='5'
+  :videoMaxSize='1 * 1024 * 1024 * 1024'
+  :imgMaxSize='2 * 1024 * 1024'
+  :sliceUploadMinFileSize='5 * 1024 * 1024'
+  @successListInfo='lookSuccessListInfo'
+>
+  <!-- 提示信息 -->
+  <template v-slot:tipInfo>
+    <span>只能上传 .mp4 格式的视频文件，大小不能超过2GB！</span>
+    <span>或 .png /.jpg /.jpeg 格式的图片文件，大小不能超过2MB！</span>
+    <p>禁止上传：名称不同但内容相同的文件</p>
+  </template>
+</Mu-UploadFile>
+
+<script>
+export default {
+  name: 'test',
+  methods: {
+    // 查看上传成功列表信息
+    lookSuccessListInfo (successList) {
+      console.log('上传成功列表 ==> ', successList)
+    }
+}
+</script>
+```
+
+### 预览图片 (PreviewImage)
+
+| 参数         | 说明               | 类型   | 可选值 | 默认值 |
+| ------------ | ------------------ | ------ | ------ | ------ |
+| urlList      | 必选参数，图片地址 | Array  | —      | null   |
+| initialIndex | 初始的下标         | Number | —      | 0      |
+| scaleStep    | 缩放步长           | Number | —      | 0.05   |
+| maxScale     | 最大缩放比例       | Number | —      | 3      |
+| minScale     | 最小缩放比例       | Number | —      | 0.5    |
+
+```vue
+<template>
+  <div class="previewImage">
+    <h2>预览图片 PreviewImage</h2>
+    <Mu-Button @click="previewImage">预览图片</Mu-Button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'test',
+  methods: {
+    previewImage () {
+      console.log('预览图片')
+      this.$previewImage({
+        urlList: [
+          'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg',
+          'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
+          'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg'
+        ]
+      })
+    }
+  }
+}
+</script>
+```
+
+### 裁切图片 (ClipImage)
+
+| 事件      | 值       | 描述                                       |
+| --------- | -------- | ------------------------------------------ |
+| saveImage | Function | 保存裁切图片触发事件，返回裁切后的图片信息 |
+
+```vue
+<template>
+  <div class="clipImage">
+    <h2>裁切图片 ClipImage</h2>
+    <Mu-ClipImage @saveImage="saveImage"></Mu-ClipImage>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'test',
+  data () {
+    return {
+      clipImgInfo: '' // 裁切图片信息
+    }
+  },
+  methods: {
+    // 保存裁切图片信息
+    saveImage (payload) {
+      this.clipImgInfo = payload
+    },
+  }
+}
+</script>
+```

@@ -3,6 +3,7 @@ const { defineConfig } = require('@vue/cli-service')
 // module.exports = defineConfig({
 //   transpileDependencies: true
 // })
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 module.exports = {
   pluginOptions: {
@@ -30,8 +31,40 @@ module.exports = {
     }
   },
 
+  // configureWebpack: config => {
+  //   const plugins = []
+  //   plugins.push(new NodePolyfillPlugin())
+  // },
+
+  // 或者
+  // configureWebpack: {
+  //   plugins: [new NodePolyfillPlugin()]
+  // },
+
+  // 配置 Webpack
+  configureWebpack: {
+    // [resolve 解决]
+    // resolve: {
+    //   // [fallback 回退] 如果确认需要node polyfill，设置 resolve.fallback 安装对应的依赖!!!
+    //   fallback: {
+    //     // crypto: require.resolve('crypto-browserify'),
+    //     path: require.resolve('path-browserify'),
+    //     url: require.resolve('url'),
+    //     buffer: require.resolve('buffer/'),
+    //     util: require.resolve('util/'),
+    //     stream: require.resolve('stream-browserify/'),
+    //     vm: require.resolve('vm-browserify')
+    //   },
+    //   // [alias 别名] 如果确认不需要node polyfill，设置 resolve.alias 设置为 false
+    //   alias: {
+    //     crypto: false
+    //   }
+    // },
+    plugins: [new NodePolyfillPlugin()]
+  },
+
   // 扩展webpack配置
-  chainWebpack: (config) => {
+  chainWebpack: config => {
     config.module
       // 高版本js语法转为低版本
       .rule('js')
@@ -39,7 +72,7 @@ module.exports = {
       .end()
       .use('babel')
       .loader('babel-loader')
-      .tap((options) => {
+      .tap(options => {
         return options
       })
   }
